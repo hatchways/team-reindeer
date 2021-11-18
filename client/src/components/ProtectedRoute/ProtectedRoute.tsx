@@ -1,8 +1,10 @@
 import { useAuth } from '../../context/useAuthContext';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface ProtectedRouteProps extends RouteProps {}
+interface ProtectedRouteProps extends RouteProps {
+  path: string;
+  exact: boolean;
+}
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ ...rest }) => {
   const { loggedInUser } = useAuth();
