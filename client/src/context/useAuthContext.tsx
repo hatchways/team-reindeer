@@ -27,6 +27,7 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
       setLoggedInUser(data.user);
       history.push('/dashboard');
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [history],
   );
 
@@ -45,8 +46,9 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
     const checkLoginWithCookies = async () => {
       await loginWithCookies().then((data: AuthApiData) => {
         if (data.success) {
-          updateLoginContext(data.success);
-          history.push('/dashboard');
+          // when page will refresh, it will update the loggedInUser with user
+          setLoggedInUser(data.success.user);
+          history.push(history.location.pathname);
         } else {
           // don't need to provide error feedback as this just means user doesn't have saved cookies or the cookies have not been authenticated on the backend
           setLoggedInUser(null);
@@ -55,7 +57,8 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
       });
     };
     checkLoginWithCookies();
-  }, [updateLoginContext, history]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [history]);
 
   return <AuthContext.Provider value={{ loggedInUser, updateLoginContext, logout }}>{children}</AuthContext.Provider>;
 };
