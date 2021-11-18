@@ -13,9 +13,7 @@ const logger = require('morgan');
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
 const profileRouter = require('./routes/profile');
-
-const upload = require('./utils/multer');
-const cloudinary = require('./utils/cloudinary');
+const uploadRouter = require('./routes/upload');
 
 const { json, urlencoded } = express;
 
@@ -46,24 +44,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/upload-images', upload.array('image'), async (req, res) => {
-  const uploader = async (path) => await cloudinary.uploads(path, 'Images');
-
-  const urls = [];
-  const files = req.files;
-  for (const file of files) {
-    const { path } = file;
-    const newPath = await uploader(path);
-    urls.push(newPath);
-    fs.unlinkSync(path);
-  }
-
-  res.status(200).json({
-    message: 'images uploaded successfully',
-    data: urls,
-  });
-});
-
+app.use('/', uploadRouter);
 app.use('/auth', authRouter);
 app.use('/users', userRouter);
 
