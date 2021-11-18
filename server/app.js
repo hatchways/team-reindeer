@@ -1,4 +1,5 @@
 const colors = require('colors');
+const fs = require('fs');
 const path = require('path');
 const http = require('http');
 const express = require('express');
@@ -43,6 +44,30 @@ app.use(express.static(join(__dirname, 'public')));
 app.use((req, res, next) => {
   req.io = io;
   next();
+});
+
+app.use('/upload-images', upload.array('image'), async (req, res) => {
+  const uploader = async (path) => await cloudinary.uploads(path, 'Images');
+
+  if (req.method === 'POST') {
+    const urls = [];
+    const files = req.files;
+    for (const file of files) {
+      const { path } = file;
+      const newPath = await uploader(path);
+      urls.push(newPath);
+      fs.unlinkSync(path);
+    }
+
+    res.status(200).json({
+      message: 'images uploaded successfully',
+      data: urls,
+    });
+  } else {
+    res.status(405).json({
+      err: `${req.method} method not allowed`,
+    });
+  }
 });
 
 app.use('/auth', authRouter);
