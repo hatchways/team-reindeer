@@ -6,5 +6,8 @@
   },
   "scripts": {
     "prepare": "husky install"
+  },
+  "dependencies": {
+    "cloudinary": "^1.27.1"
   }
 }
