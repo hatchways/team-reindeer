@@ -35,8 +35,8 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
     // needed to remove token cookie
     await logoutAPI()
       .then(() => {
-        history.push('/login');
         setLoggedInUser(null);
+        history.push('/login');
       })
       .catch((error) => console.error(error));
   }, [history]);
