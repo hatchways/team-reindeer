@@ -13,6 +13,9 @@ const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
 const profileRouter = require('./routes/profile');
 
+const upload = require('./utils/multer');
+const cloudinary = require('./utils/cloudinary');
+
 const { json, urlencoded } = express;
 
 connectDB();
