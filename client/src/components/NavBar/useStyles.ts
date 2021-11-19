@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() => ({
   appbar: {
     maxHeight: 100,
+    zIndex: -9999,
   },
   toolbar: {
     display: 'flex',
