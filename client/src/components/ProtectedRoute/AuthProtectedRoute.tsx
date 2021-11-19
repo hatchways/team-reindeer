@@ -9,7 +9,9 @@ interface AuthProtectedRouteProps extends RouteProps {
 const AuthProtectedRoute: React.FC<AuthProtectedRouteProps> = ({ ...rest }) => {
   const { loggedInUser } = useAuth();
 
-  if (loggedInUser !== null && loggedInUser !== undefined) return <Redirect to="/dashboard" />;
+  if (loggedInUser) return <Redirect to="/dashboard" />;
+
+  // if (loggedInUser !== null && loggedInUser !== undefined) return <Redirect to="/dashboard" />;
   return <Route {...rest} />;
 };
 

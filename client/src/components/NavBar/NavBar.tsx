@@ -23,11 +23,11 @@ const NavBar = (): JSX.Element => {
     initSocket();
   }, [initSocket]);
 
-  if (loggedInUser === undefined) return <CircularProgress />;
+  // if (loggedInUser === undefined) return <CircularProgress />;
   if (
     !loggedInUser &&
-    loggedInUser === null &&
-    loggedInUser === undefined &&
+    // loggedInUser === null &&
+    // loggedInUser === undefined &&
     history.location.pathname !== '/login' &&
     history.location.pathname !== '/signup'
   ) {
