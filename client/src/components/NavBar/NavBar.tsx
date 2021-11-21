@@ -2,7 +2,6 @@ import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
 import useStyles from './useStyles';
 import logo from '../../Images/logo.png';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { useAuth } from '../../context/useAuthContext';
 import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
@@ -23,17 +22,14 @@ const NavBar = (): JSX.Element => {
     initSocket();
   }, [initSocket]);
 
-  // if (loggedInUser === undefined) return <CircularProgress />;
-  // if (!loggedInUser && history.location.pathname !== '/login' && history.location.pathname !== '/signup') {
-  //   history.push('/login');
-  //   // loading for a split seconds until history.push works
-  //   return <CircularProgress />;
-  // }
+  // adding styles based upon the path
+  const appbar = history.location.pathname === '/' ? classes.homeAppbar : classes.appbar;
+  const toolbar = history.location.pathname === '/' ? classes.homeToolbar : classes.toolbar;
 
   return (
-    <AppBar className={classes.appbar} position="absolute">
+    <AppBar className={appbar} position="absolute">
       <CssBaseline />
-      <ToolBar className={classes.toolbar}>
+      <ToolBar className={toolbar}>
         <img src={logo} alt="logo" />
         {loggedInUser ? <LoggedInBar /> : <LoggedOutBar />}
       </ToolBar>

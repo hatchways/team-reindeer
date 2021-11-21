@@ -8,7 +8,7 @@ export const theme = createMuiTheme({
       fontFamily: '"Roboto"',
     },
     body1: {
-      color: '#f14140',
+      color: '#000000',
     },
     h3: {
       fontSize: 18,
@@ -33,4 +33,5 @@ export const theme = createMuiTheme({
   shape: {
     borderRadius: 5,
   },
+  spacing: 2, //setting pixel size of 2
 });
