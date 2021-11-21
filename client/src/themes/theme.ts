@@ -10,6 +10,14 @@ export const theme = createMuiTheme({
     body1: {
       color: '#000000',
     },
+    h2: {
+      fontSize: 48,
+      color: '#00000',
+      fontWeight: 400,
+      '@media (max-width:768px)': {
+        fontSize: 24,
+      },
+    },
     h3: {
       fontSize: 18,
       color: '#000000',
@@ -34,4 +42,13 @@ export const theme = createMuiTheme({
     borderRadius: 5,
   },
   spacing: 2, //setting pixel size of 2
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 480,
+      md: 768,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
 });

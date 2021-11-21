@@ -8,13 +8,11 @@ const Homepage = (): JSX.Element => {
 
   return (
     <Grid container>
-      <Grid item sm={6} className={classes.findDogSitter} direction="column">
-        <Typography variant="h2" className="heading">
-          Find the care your dog deserves
-        </Typography>
+      <Grid item sm={12} md={6} className={classes.findDogSitter} direction="column">
+        <Typography variant="h2">Find the care your dog deserves</Typography>
         <FindDogSitter />
       </Grid>
-      <Grid item sm={6} className={classes.banner}>
+      <Grid item sm={12} md={6} className={classes.banner}>
         <img src={banner} className={classes.image} />
       </Grid>
     </Grid>

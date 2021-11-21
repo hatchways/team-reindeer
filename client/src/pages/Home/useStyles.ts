@@ -6,10 +6,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(20, 50),
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(5, 15),
+      marginTop: theme.spacing(70),
     },
-  },
-  heading: {
-    fontWeight: 900,
   },
   banner: {
     minHeight: '100vh',
