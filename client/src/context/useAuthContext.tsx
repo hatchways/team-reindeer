@@ -27,7 +27,6 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
       setLoggedInUser(data.user);
       history.push('/dashboard');
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [history],
   );
 
@@ -57,7 +56,6 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
       });
     };
     checkLoginWithCookies();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [history]);
 
   return <AuthContext.Provider value={{ loggedInUser, updateLoginContext, logout }}>{children}</AuthContext.Provider>;

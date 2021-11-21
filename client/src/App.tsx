@@ -10,7 +10,6 @@ import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-import AuthProtectedRoute from './components/ProtectedRoute/AuthProtectedRoute';
 
 import './App.css';
 
@@ -23,13 +22,13 @@ function App(): JSX.Element {
             <SocketProvider>
               <NavBar />
               <Switch>
-                <AuthProtectedRoute exact path="/login" component={Login} />
-                <AuthProtectedRoute exact path="/signup" component={Signup} />
-                <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-                <ProtectedRoute exact path="/my-jobs" component={Dashboard} />
-                <ProtectedRoute exact path="/messages" component={Dashboard} />
-                <ProtectedRoute exact path="/my-sitters" component={Dashboard} />
-                <ProtectedRoute exact path="/edit-profile" component={EditMenu} />
+                <ProtectedRoute exact path="/login" component={Login} />
+                <ProtectedRoute exact path="/signup" component={Signup} />
+                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/my-jobs" component={Dashboard} />
+                <Route exact path="/messages" component={Dashboard} />
+                <Route exact path="/my-sitters" component={Dashboard} />
+                <Route exact path="/edit-profile" component={EditMenu} />
                 <Route path="*">
                   <Redirect to="/login" />
                 </Route>
