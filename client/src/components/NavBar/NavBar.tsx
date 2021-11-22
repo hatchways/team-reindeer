@@ -5,7 +5,8 @@ import useStyles from './useStyles';
 import logo from '../../Images/logo.png';
 import { useAuth } from '../../context/useAuthContext';
 import { useSocket } from '../../context/useSocketContext';
-import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 import LoggedInBar from './AuthBars/LoggedInBar';
 import LoggedOutBar from './AuthBars/LoggedOutBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,16 +16,16 @@ const NavBar = (): JSX.Element => {
   const { loggedInUser } = useAuth();
   const { initSocket } = useSocket();
 
-  const history = useHistory();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     initSocket();
   }, [initSocket]);
 
   return (
-    <AppBar className={history.location.pathname === '/' ? classes.homeAppbar : classes.appbar} position="absolute">
+    <AppBar className={pathname === '/' ? classes.homeAppbar : classes.appbar} position="absolute">
       <CssBaseline />
-      <ToolBar className={history.location.pathname === '/' ? classes.homeToolbar : classes.toolbar}>
+      <ToolBar className={pathname === '/' ? classes.homeToolbar : classes.toolbar}>
         <img src={logo} alt="logo" />
         {loggedInUser ? <LoggedInBar /> : <LoggedOutBar />}
       </ToolBar>

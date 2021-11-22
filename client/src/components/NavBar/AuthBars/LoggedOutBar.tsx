@@ -2,11 +2,11 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import useStyles from './useStyles';
-import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const LoggedOutBar = (): JSX.Element => {
   const classes = useStyles();
-  const history = useHistory();
+  const { pathname } = useLocation();
 
   return (
     <Grid container className={classes.navButtons}>
@@ -14,7 +14,7 @@ const LoggedOutBar = (): JSX.Element => {
         <Button
           component={Link}
           to="/login"
-          color={history.location.pathname === '/' ? 'secondary' : 'primary'}
+          color={pathname === '/' ? 'secondary' : 'primary'}
           size="large"
           variant="outlined"
         >
