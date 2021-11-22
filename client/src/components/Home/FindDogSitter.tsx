@@ -7,14 +7,16 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import { Typography } from '@material-ui/core';
+import useStyles from './useStyles';
 
 const FindDogSitter = (): JSX.Element => {
   const [value, setValue] = useState<Date | null>(null);
+  const classes = useStyles();
   return (
     <Stack spacing={2} mt={2}>
-      <Typography>WHERE</Typography>
+      <Typography className={classes.typography}>where</Typography>
       <TextField id="outlined-basic" label="Anywhere" variant="outlined" />
-      <Typography>DROP IN/DROP OFF</Typography>
+      <Typography className={classes.typography}>drop in/drop off</Typography>
       <Box display="flex" flexDirection="row">
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
@@ -35,8 +37,8 @@ const FindDogSitter = (): JSX.Element => {
           />
         </LocalizationProvider>
       </Box>
-      <Button color="primary" size="large" variant="contained">
-        FIND MY DOG SITTER
+      <Button color="primary" size="large" className={classes.typography} variant="contained">
+        find my dog sitter
       </Button>
     </Stack>
   );

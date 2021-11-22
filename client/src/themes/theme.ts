@@ -41,7 +41,7 @@ export const theme = createMuiTheme({
   shape: {
     borderRadius: 5,
   },
-  spacing: 2, //setting pixel size of 2
+  spacing: 2,
   breakpoints: {
     values: {
       xs: 0,
