@@ -9,6 +9,7 @@ import { useLocation } from 'react-router-dom';
 import LoggedInBar from './AuthBars/LoggedInBar';
 import LoggedOutBar from './AuthBars/LoggedOutBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { CircularProgress } from '@material-ui/core';
 
 const NavBar = (): JSX.Element => {
   const classes = useStyles();
@@ -18,7 +19,6 @@ const NavBar = (): JSX.Element => {
   useEffect(() => {
     initSocket();
   }, [initSocket]);
-
 
   if (loggedInUser === undefined) return <CircularProgress />;
 

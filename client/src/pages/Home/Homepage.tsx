@@ -1,7 +1,7 @@
 import Grid from '@material-ui/core/Grid';
 import useStyles from './useStyles';
 import banner from '../../Images/banner.jpg';
-import Typography from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import FindDogSitter from '../../components/Home/FindDogSitter';
 const Homepage = (): JSX.Element => {
   const classes = useStyles();
