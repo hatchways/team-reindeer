@@ -47,7 +47,11 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
         if (data.success) {
           // when page will refresh, it will update the loggedInUser with user
           setLoggedInUser(data.success.user);
-          history.push(pathname);
+          if (pathname === '/login' || pathname === '/signup') {
+            history.push('/dashboard');
+          } else {
+            history.push(pathname);
+          }
         } else {
           // don't need to provide error feedback as this just means user doesn't have saved cookies or the cookies have not been authenticated on the backend
           setLoggedInUser(null);
