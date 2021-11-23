@@ -115,6 +115,9 @@ const SignUpForm = ({ handleSubmit }: Props): JSX.Element => {
             <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>
               {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'SIGN UP'}
             </Button>
+            <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>
+              {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'SIGN UP DEMO'}
+            </Button>
           </Box>
           <AuthFooter linkTo="/login" asideText="Already have an account?" btnText="Login" />
         </form>
