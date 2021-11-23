@@ -1,7 +1,7 @@
 import Grid from '@material-ui/core/Grid';
 import useStyles from './useStyles';
 import banner from '../../Images/banner.jpg';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core';
 import FindDogSitter from '../../components/Home/FindDogSitter';
 const Homepage = (): JSX.Element => {
   const classes = useStyles();
@@ -13,7 +13,7 @@ const Homepage = (): JSX.Element => {
         <FindDogSitter />
       </Grid>
       <Grid item sm={12} md={6} className={classes.banner}>
-        <img src={banner} className={classes.image} />
+        <img src={banner} className={classes.image} alt="banner" />
       </Grid>
     </Grid>
   );

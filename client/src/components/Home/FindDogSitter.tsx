@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
 
 const FindDogSitter = (): JSX.Element => {
