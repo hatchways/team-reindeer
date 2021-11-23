@@ -9,7 +9,7 @@ interface ProtectedRouteProps extends RouteProps {
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ ...rest }) => {
   const { loggedInUser } = useAuth();
 
-  if (loggedInUser) return <Redirect to="/dashboard" />;
+  if (!loggedInUser) return <Redirect to="/login" />;
   return <Route {...rest} />;
 };
 

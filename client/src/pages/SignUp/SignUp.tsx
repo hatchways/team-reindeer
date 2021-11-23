@@ -9,12 +9,16 @@ import register from '../../helpers/APICalls/register';
 import SignUpForm from './SignUpForm/SignUpForm';
 import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
+import { useHistory } from 'react-router-dom';
 
 export default function Register(): JSX.Element {
   const classes = useStyles();
-  const { updateLoginContext } = useAuth();
+  const { updateLoginContext, loggedInUser } = useAuth();
   const { updateSnackBarMessage } = useSnackBar();
-
+  const history = useHistory();
+  if (loggedInUser) {
+    history.push('/dashboard');
+  }
   const handleSubmit = (
     { username, email, password }: { email: string; password: string; username: string },
     { setSubmitting }: FormikHelpers<{ email: string; password: string; username: string }>,
