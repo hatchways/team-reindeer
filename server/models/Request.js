@@ -1,8 +1,16 @@
 const mongoose = require("mongoose");
 
 const requestSchema = new mongoose.Schema({
-  user_id: mongoose.Schema.Types.ObjectId,
-  sitter_id: mongoose.Schema.Types.ObjectId,
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User",
+  },
+  sitter_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User",
+  },
   start: {
     type: Date,
     required: true,
@@ -25,4 +33,4 @@ const requestSchema = new mongoose.Schema({
   },
 });
 
-module.exports = Request = mongoose.mode("Request", requestSchema);
+module.exports = Request = mongoose.model("Request", requestSchema);
