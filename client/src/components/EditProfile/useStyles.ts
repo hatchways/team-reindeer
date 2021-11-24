@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
     '& .MuiInput-underline:before': {
@@ -15,12 +15,14 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'flex-start',
     alignItems: 'center',
     height: 224,
+    position: 'relative',
   },
   tabs: {
     borderRight: 1,
     borderColor: 'divider',
   },
   tabComponents: {
+    marginTop: theme.spacing(15),
     flexGrow: 2,
   },
 }));
