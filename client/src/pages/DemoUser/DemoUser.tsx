@@ -15,7 +15,6 @@ export default function Demo(): JSX.Element {
       } else if (data.success) {
         updateLoginContext(data.success);
       } else {
-        // should not get here from backend but this catch is for an unknown issue
         console.error({ data });
       }
     });
