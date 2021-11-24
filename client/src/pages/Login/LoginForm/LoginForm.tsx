@@ -52,7 +52,7 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
