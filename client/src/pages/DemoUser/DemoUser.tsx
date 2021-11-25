@@ -3,7 +3,7 @@ import login from '../../helpers/APICalls/login';
 import { useAuth } from '../../context/useAuthContext';
 import useStyles from './useStyles';
 
-export default function Demo(): JSX.Element {
+export default function DemoUser(): JSX.Element {
   const classes = useStyles();
   const { updateLoginContext } = useAuth();
   const email = 'lukmanbioku@gmail.com';
