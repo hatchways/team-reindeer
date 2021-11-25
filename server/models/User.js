@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
   },
   profile: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true,
+    required: false,
     ref: "Profile",
   },
 });
