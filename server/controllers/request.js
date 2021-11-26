@@ -14,7 +14,6 @@ const getRequests = async (req, res) => {
 // @route POST
 
 const createRequest = async (req, res) => {
-  req.body.userId = req.user.id;
   const request = await Request.create(req.body);
   res.send(request);
 };
@@ -23,13 +22,9 @@ const createRequest = async (req, res) => {
 // @route PUT
 
 const updateRequest = async (req, res) => {
-  Request.findByIdAndUpdate({ _id: req.params.id }, req.body).then(
-    (request) => {
-      Request.findOne({ _id: req.params.id }).then((request) => {
-        res.send(request);
-      });
-    }
-  );
+  await Request.findByIdAndUpdate({ _id: req.params.id }, req.body);
+  const request = await Request.findOne({ _id: req.params.id });
+  res.send(request);
 };
 
 module.exports = { createRequest, getRequests, updateRequest };

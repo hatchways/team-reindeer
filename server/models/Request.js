@@ -19,13 +19,10 @@ const requestSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  accepted: {
-    type: Boolean,
-    default: false,
-  },
-  declined: {
-    type: Boolean,
-    default: false,
+  status: {
+    type: String,
+    enum: ["accepted", "declined", "pending"],
+    default: "pending",
   },
   paid: {
     type: Boolean,
