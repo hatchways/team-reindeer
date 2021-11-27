@@ -5,6 +5,12 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid black',
     marginTop: theme.spacing(50),
   },
+  bookings: {
+    border: '1px solid black',
+  },
+  bookingCalender: {
+    border: '1px solid black',
+  },
 }));
 
 export default useStyles;
