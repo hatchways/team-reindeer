@@ -22,9 +22,14 @@ const createRequest = async (req, res) => {
 // @route PUT
 
 const updateRequest = async (req, res) => {
-  await Request.findByIdAndUpdate({ _id: req.params.id }, req.body);
-  const request = await Request.findOne({ _id: req.params.id });
-  res.send(request);
+  const request = await Request.findOneAndUpdate(
+    { _id: req.params.id },
+    req.body,
+    {
+      new: true,
+    }
+  );
+  res.json(request);
 };
 
 module.exports = { createRequest, getRequests, updateRequest };
