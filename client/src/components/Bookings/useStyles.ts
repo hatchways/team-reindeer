@@ -1,20 +1,20 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: 450,
-    padding: theme.spacing(10),
+  nextBooking: {
+    minWidth: 450,
+    padding: theme.spacing(5),
     marginTop: theme.spacing(10),
   },
-  upcomingRoot: {
-    width: 450,
-    padding: theme.spacing(10),
+  upcomingBookings: {
+    minWidth: 450,
+    padding: theme.spacing(5),
     marginTop: theme.spacing(10),
-    height: 300,
+    height: 400,
     overflow: 'auto',
   },
-  upcomings: {
-    padding: theme.spacing(10),
+  bookings: {
+    padding: theme.spacing(5),
     marginTop: theme.spacing(10),
   },
   title: {
@@ -25,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
   },
   clientName: {
     marginLeft: theme.spacing(10),
+  },
+  status: {
+    textTransform: 'uppercase',
   },
 }));
 
