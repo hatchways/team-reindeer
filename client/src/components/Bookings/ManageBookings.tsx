@@ -1,27 +1,12 @@
 import Box from '@material-ui/core/Box';
-import BookingCard from './BookingCard';
-import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
-import useStyles from './useStyles';
+import Booking from './Booking';
+import UpcomingBookings from './UpcomingBookings';
 
 const ManageBookings = (): JSX.Element => {
-  const classes = useStyles();
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      <BookingCard />
-      <Box>
-        <Card className={classes.upcomingRoot}>
-          <Typography className={classes.title} variant="h6" gutterBottom>
-            Upcoming Bookings:
-          </Typography>
-          <BookingCard />
-          <BookingCard />
-          <BookingCard />
-          <BookingCard />
-          <BookingCard />
-          <BookingCard />
-        </Card>
-      </Box>
+      <Booking bookingType="next" timing="30 November 2021, 10-12 PM" clientName="Thomas" status="accepted" />
+      <UpcomingBookings />
     </Box>
   );
 };
