@@ -4,11 +4,13 @@ import { Grid, makeStyles, Typography } from '@material-ui/core';
 
 import Textfield from '../../FormsUI/Textfield';
 import Select from '../../FormsUI/Select';
+import DateTimePicker from '../../FormsUI/DateTimePicker';
 
 const INITIAL_FORM_STATE = {
   firstName: '',
   lastName: '',
   gender: '',
+  birthDate: '',
 };
 
 const FORM_VALIDATION = Yup.object().shape({
@@ -48,27 +50,35 @@ const EditForm = (): JSX.Element => {
             </Grid>
             <Grid item xs={12} sm={3}>
               <Typography variant="body1" style={{ color: '#000' }}>
-                First Name
+                FIRST NAME
               </Typography>
             </Grid>
             <Grid item xs={12} sm={8}>
-              <Textfield name="firstName" label={<Typography className={classes.label}>John</Typography>} />
+              <Textfield name="firstName" />
             </Grid>
             <Grid item xs={12} sm={3}>
               <Typography variant="body1" style={{ color: '#000' }}>
-                Last Name
+                LAST NAME
               </Typography>
             </Grid>
             <Grid item xs={12} sm={8}>
-              <Textfield name="lastName" label={<Typography className={classes.label}>Doe</Typography>} />
+              <Textfield name="lastName" />
             </Grid>
             <Grid item xs={12} sm={3}>
               <Typography variant="body1" style={{ color: '#000' }}>
-                Gender
+                GENDER
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={8}>
               <Select name="gender" options={options} />
+            </Grid>
+            <Grid item xs={12} sm={3}>
+              <Typography variant="body1" style={{ color: '#000' }}>
+                BIRTH DATE
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={8}>
+              <DateTimePicker name="birthDate" />
             </Grid>
           </Grid>
         </Form>
