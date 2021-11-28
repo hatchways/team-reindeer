@@ -11,6 +11,7 @@ const INITIAL_FORM_STATE = {
   lastName: '',
   gender: '',
   birthDate: '',
+  email: '',
 };
 
 const FORM_VALIDATION = Yup.object().shape({
@@ -18,6 +19,7 @@ const FORM_VALIDATION = Yup.object().shape({
   lastName: Yup.string().required('This field cannot be empty'),
   gender: Yup.string().required('This field cannot be empty'),
   birthDate: Yup.date().required('This field cannot be empty'),
+  email: Yup.string().email('Invalid email.').required('This field cannot be empty'),
 });
 
 const useStyles = makeStyles({
@@ -81,6 +83,14 @@ const EditForm = (): JSX.Element => {
             </Grid>
             <Grid item xs={12} sm={8}>
               <DateTimePicker name="birthDate" />
+            </Grid>
+            <Grid item xs={12} sm={3}>
+              <Typography variant="body1" style={{ color: '#000' }}>
+                EMAIL
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={8}>
+              <Textfield name="email" />
             </Grid>
           </Grid>
         </Form>
