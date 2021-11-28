@@ -21,17 +21,22 @@ export const theme = createMuiTheme({
     h3: {
       fontSize: 18,
       color: '#000000',
-      fontWeight: 500,
-      fontFamily: "'Arial'",
+      fontWeight: 300,
+      fontFamily: "'Roboto'",
       textAlign: 'center',
       textTransform: 'capitalize',
     },
     h5: {
-      fontSize: 26,
+      fontSize: 14,
+      color: '#000000',
+      fontWeight: 400,
+      fontFamily: "'Roboto'",
+    },
+    h6: {
+      fontSize: 12,
       color: '#000000',
       fontWeight: 700,
       fontFamily: "'Roboto'",
-      textAlign: 'center',
     },
   },
   palette: {
