@@ -104,6 +104,14 @@ const EditForm = (): JSX.Element => {
             <Grid item xs={12} sm={8}>
               <Textfield name="phone" />
             </Grid>
+            <Grid item xs={12} sm={3}>
+              <Typography variant="body1" style={{ color: '#000' }}>
+                WHERE YOU LIVE
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={8}>
+              <Textfield name="address" />
+            </Grid>
           </Grid>
         </Form>
       </Formik>
