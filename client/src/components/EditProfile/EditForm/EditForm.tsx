@@ -1,152 +1,102 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useStyles from './useStyles';
-import { InputLabel, Box, TextField, Button, Typography } from '@material-ui/core';
-import TextareaAutosize from 'react-textarea-autosize';
+import { TextField, Button, Typography, Grid, Select, MenuItem } from '@material-ui/core';
+import { Formik, FormikHelpers } from 'formik';
+import * as Yup from 'yup';
+
+const INITIAL_FORM_STATE = {
+  firstName: '',
+  lastName: '',
+  gender: '',
+};
+
+const FORM_VALIDATION = Yup.object().shape({
+  firstName: Yup.string().required('This field cannot be empty'),
+  lastName: Yup.string().required('This field cannot be empty'),
+});
 
 const EditForm = (): JSX.Element => {
   const classes = useStyles();
 
-  const [input, setInput] = useState({
-    firstName: '',
-    lastName: '',
-    gender: '',
-    birthday: '',
-    email: '',
-    phone: '',
-    address: '',
-    description: '',
-  });
-
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setInput((oldState) => {
-      return { ...oldState, [name]: value };
-    });
-  };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log('submitted');
-  };
-
   return (
     <div>
-      <Typography className={classes.welcome} component="h1" variant="h5">
-        Edit Profile
-      </Typography>
+      <Formik
+        initialValues={{
+          ...INITIAL_FORM_STATE,
+        }}
+        validationSchema={FORM_VALIDATION}
+        onSubmit={(values) => {
+          console.log(values);
+        }}
+      >
+        {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
+          <form onSubmit={handleSubmit} className={classes.form}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Typography variant="h6" align="center">
+                  Edit Profile
+                </Typography>
+              </Grid>
+              <Grid item xs={3} style={{ marginTop: '30px' }}>
+                <Typography variant="h6">First Name</Typography>
+              </Grid>
+              <Grid item xs={9}>
+                <TextField
+                  fullWidth
+                  className={classes.inputs}
+                  label={<Typography className={classes.label}>John</Typography>}
+                  type="text"
+                  name="firstName"
+                  helperText={touched.firstName ? errors.firstName : ''}
+                  error={touched.firstName && Boolean(errors.firstName)}
+                  value={values.firstName}
+                  onChange={handleChange}
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item xs={3} style={{ marginTop: '30px' }}>
+                <Typography variant="h6">Last Name</Typography>
+              </Grid>
+              <Grid item xs={9}>
+                <TextField
+                  fullWidth
+                  className={classes.inputs}
+                  label={<Typography className={classes.label}>Doe</Typography>}
+                  type="text"
+                  name="lastName"
+                  value={values.lastName}
+                  onChange={handleChange}
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item xs={3} style={{ marginTop: '30px' }}>
+                <Typography variant="h6">Gender</Typography>
+              </Grid>
+              <Select
+                style={{ flex: 1 }}
+                labelId="demo-customized-select-label"
+                id="demo-customized-select"
+                value={values.gender}
+                onChange={handleChange}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+              <Grid></Grid>
 
-      <form onSubmit={handleSubmit} className={classes.form}>
-        <Box>
-          <InputLabel className={classes.inputLabel}>First Name</InputLabel>
-          <TextField
-            fullWidth
-            className={classes.inputs}
-            label={<Typography className={classes.label}>John</Typography>}
-            type="text"
-            name="firstName"
-            value={input.firstName}
-            onChange={handleChange}
-            variant="outlined"
-          />
-        </Box>
-        <Box>
-          <InputLabel className={classes.inputLabel}>Last Name</InputLabel>
-          <TextField
-            fullWidth
-            className={classes.inputs}
-            label={<Typography className={classes.label}>Doe</Typography>}
-            type="text"
-            name="lastName"
-            value={input.lastName}
-            onChange={handleChange}
-            variant="outlined"
-          />
-        </Box>
-        <Box>
-          <InputLabel className={classes.inputLabel}>Birth Date</InputLabel>
-          <TextField
-            fullWidth
-            className={classes.inputs}
-            type="date"
-            name="birthday"
-            value={input.birthday}
-            onChange={handleChange}
-            variant="outlined"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </Box>
-        <Box>
-          <InputLabel className={classes.inputLabel}>Gender</InputLabel>
-          <TextField
-            fullWidth
-            className={classes.inputs}
-            label={<Typography className={classes.label}>gender</Typography>}
-            type="text"
-            name="gender"
-            value={input.gender}
-            onChange={handleChange}
-            variant="outlined"
-          />
-        </Box>
-        <Box>
-          <InputLabel className={classes.inputLabel}>Email Address</InputLabel>
-          <TextField
-            fullWidth
-            className={classes.inputs}
-            label={<Typography className={classes.label}>john-doe@gmail.com</Typography>}
-            type="email"
-            name="email"
-            value={input.email}
-            onChange={handleChange}
-            variant="outlined"
-          />
-        </Box>
-        <Box>
-          <InputLabel className={classes.inputLabel}>Phone Number</InputLabel>
-          <TextField
-            fullWidth
-            className={classes.inputs}
-            label={<Typography className={classes.label}>Add a phone number</Typography>}
-            type="string"
-            name="phone"
-            value={input.phone}
-            onChange={handleChange}
-            variant="outlined"
-          />
-        </Box>
-        <Box>
-          <InputLabel className={classes.inputLabel}>Where you Live</InputLabel>
-          <TextField
-            fullWidth
-            className={classes.inputs}
-            label={<Typography className={classes.label}>Address</Typography>}
-            type="text"
-            name="address"
-            value={input.address}
-            onChange={handleChange}
-            variant="outlined"
-          />
-        </Box>
-        <Box>
-          <InputLabel className={classes.inputLabel}>Descripe Yourself</InputLabel>
-          <TextareaAutosize
-            style={{ width: '74%', marginTop: '25px' }}
-            minRows={5}
-            aria-label="minimum height"
-            placeholder="About you"
-            name="description"
-            value={input.description}
-            onChange={handleChange}
-          />
-        </Box>
-        <Box textAlign="center" className={classes.submitDiv}>
-          <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>
-            save
-          </Button>
-        </Box>
-      </form>
+              {/* <Box textAlign="center" className={classes.submitDiv}>
+              <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>
+                save
+              </Button>
+            </Box> */}
+            </Grid>
+          </form>
+        )}
+      </Formik>
     </div>
   );
 };
