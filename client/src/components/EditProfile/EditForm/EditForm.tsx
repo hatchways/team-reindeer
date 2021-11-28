@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import TextField from '@material-ui/core/TextField';
+import React, { useState } from 'react';
 import useStyles from './useStyles';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
+import { InputLabel, Box, TextField, Button, Typography } from '@material-ui/core';
+import TextareaAutosize from 'react-textarea-autosize';
 
-const EditForm = () => {
+const EditForm = (): JSX.Element => {
   const classes = useStyles();
 
   const [input, setInput] = useState({
@@ -34,92 +31,116 @@ const EditForm = () => {
 
   return (
     <div>
-      <Grid item xs>
-        <Typography className={classes.welcome} component="h1" variant="h5">
-          Edit Profile
-        </Typography>
-      </Grid>
+      <Typography className={classes.welcome} component="h1" variant="h5">
+        Edit Profile
+      </Typography>
+
       <form onSubmit={handleSubmit} className={classes.form}>
-        <TextField
-          fullWidth
-          className={classes.inputs}
-          label={<Typography className={classes.label}>first name</Typography>}
-          type="text"
-          name="firstName"
-          value={input.firstName}
-          onChange={handleChange}
-          variant="outlined"
-        />
-        <TextField
-          fullWidth
-          className={classes.inputs}
-          label={<Typography className={classes.label}>last name</Typography>}
-          type="text"
-          name="lastName"
-          value={input.lastName}
-          onChange={handleChange}
-          variant="outlined"
-        />
-        <TextField
-          fullWidth
-          className={classes.inputs}
-          label={<Typography className={classes.label}>birthday</Typography>}
-          type="text"
-          name="birthday"
-          value={input.birthday}
-          onChange={handleChange}
-          variant="outlined"
-        />
-        <TextField
-          fullWidth
-          className={classes.inputs}
-          label={<Typography className={classes.label}>gender</Typography>}
-          type="text"
-          name="gender"
-          value={input.gender}
-          onChange={handleChange}
-          variant="outlined"
-        />
-        <TextField
-          fullWidth
-          className={classes.inputs}
-          label={<Typography className={classes.label}>email</Typography>}
-          type="text"
-          name="email"
-          value={input.email}
-          onChange={handleChange}
-          variant="outlined"
-        />
-        <TextField
-          fullWidth
-          className={classes.inputs}
-          label={<Typography className={classes.label}>phone</Typography>}
-          type="text"
-          name="phone"
-          value={input.phone}
-          onChange={handleChange}
-          variant="outlined"
-        />
-        <TextField
-          fullWidth
-          className={classes.inputs}
-          label={<Typography className={classes.label}>address</Typography>}
-          type="text"
-          name="address"
-          value={input.address}
-          onChange={handleChange}
-          variant="outlined"
-        />
-        <TextField
-          fullWidth
-          className={classes.inputs}
-          label={<Typography className={classes.label}>description</Typography>}
-          type="text"
-          name="description"
-          value={input.description}
-          onChange={handleChange}
-          variant="outlined"
-        />
+        <Box>
+          <InputLabel className={classes.inputLabel}>First Name</InputLabel>
+          <TextField
+            fullWidth
+            className={classes.inputs}
+            label={<Typography className={classes.label}>John</Typography>}
+            type="text"
+            name="firstName"
+            value={input.firstName}
+            onChange={handleChange}
+            variant="outlined"
+          />
+        </Box>
+        <Box>
+          <InputLabel className={classes.inputLabel}>Last Name</InputLabel>
+          <TextField
+            fullWidth
+            className={classes.inputs}
+            label={<Typography className={classes.label}>Doe</Typography>}
+            type="text"
+            name="lastName"
+            value={input.lastName}
+            onChange={handleChange}
+            variant="outlined"
+          />
+        </Box>
+        <Box>
+          <InputLabel className={classes.inputLabel}>Birth Date</InputLabel>
+          <TextField
+            fullWidth
+            className={classes.inputs}
+            type="date"
+            name="birthday"
+            value={input.birthday}
+            onChange={handleChange}
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        </Box>
+        <Box>
+          <InputLabel className={classes.inputLabel}>Gender</InputLabel>
+          <TextField
+            fullWidth
+            className={classes.inputs}
+            label={<Typography className={classes.label}>gender</Typography>}
+            type="text"
+            name="gender"
+            value={input.gender}
+            onChange={handleChange}
+            variant="outlined"
+          />
+        </Box>
+        <Box>
+          <InputLabel className={classes.inputLabel}>Email Address</InputLabel>
+          <TextField
+            fullWidth
+            className={classes.inputs}
+            label={<Typography className={classes.label}>john-doe@gmail.com</Typography>}
+            type="email"
+            name="email"
+            value={input.email}
+            onChange={handleChange}
+            variant="outlined"
+          />
+        </Box>
+        <Box>
+          <InputLabel className={classes.inputLabel}>Phone Number</InputLabel>
+          <TextField
+            fullWidth
+            className={classes.inputs}
+            label={<Typography className={classes.label}>Add a phone number</Typography>}
+            type="string"
+            name="phone"
+            value={input.phone}
+            onChange={handleChange}
+            variant="outlined"
+          />
+        </Box>
+        <Box>
+          <InputLabel className={classes.inputLabel}>Where you Live</InputLabel>
+          <TextField
+            fullWidth
+            className={classes.inputs}
+            label={<Typography className={classes.label}>Address</Typography>}
+            type="text"
+            name="address"
+            value={input.address}
+            onChange={handleChange}
+            variant="outlined"
+          />
+        </Box>
+        <Box>
+          <InputLabel className={classes.inputLabel}>Descripe Yourself</InputLabel>
+          <TextareaAutosize
+            style={{ width: '74%', marginTop: '25px' }}
+            minRows={5}
+            aria-label="minimum height"
+            placeholder="About you"
+            name="description"
+            value={input.description}
+            onChange={handleChange}
+          />
+        </Box>
         <Box textAlign="center" className={classes.submitDiv}>
           <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>
             save
