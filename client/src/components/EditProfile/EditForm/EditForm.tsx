@@ -16,6 +16,8 @@ const INITIAL_FORM_STATE = {
 const FORM_VALIDATION = Yup.object().shape({
   firstName: Yup.string().required('This field cannot be empty'),
   lastName: Yup.string().required('This field cannot be empty'),
+  gender: Yup.string().required('This field cannot be empty'),
+  birthDate: Yup.date().required('This field cannot be empty'),
 });
 
 const useStyles = makeStyles({
