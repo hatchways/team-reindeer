@@ -14,6 +14,7 @@ const INITIAL_FORM_STATE = {
   email: '',
   phone: '',
   address: '',
+  message: '',
 };
 
 const FORM_VALIDATION = Yup.object().shape({
@@ -24,6 +25,7 @@ const FORM_VALIDATION = Yup.object().shape({
   email: Yup.string().email('Invalid email.').required('This field cannot be empty'),
   phone: Yup.number().integer().typeError('Please enter a valid phone number').required('This field cannot be empty'),
   address: Yup.string().required('Required'),
+  message: Yup.string(),
 });
 
 const useStyles = makeStyles({
@@ -111,6 +113,14 @@ const EditForm = (): JSX.Element => {
             </Grid>
             <Grid item xs={12} sm={8}>
               <Textfield name="address" />
+            </Grid>
+            <Grid item xs={12} sm={3}>
+              <Typography variant="body1" style={{ color: '#000' }}>
+                DESCRIBE YOURSELF
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={8}>
+              <Textfield name="message" multiline={true} rows={4} />
             </Grid>
           </Grid>
         </Form>
