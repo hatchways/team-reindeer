@@ -7,10 +7,10 @@ const Bookings = (): JSX.Element => {
   const classes = useStyles();
   return (
     <Grid container className={classes.root}>
-      <Grid item xs={12} sm={6} className={classes.bookings}>
+      <Grid item xs={12} md={6}>
         <ManageBookings />
       </Grid>
-      <Grid item xs={12} sm={6} className={classes.bookingCalender}>
+      <Grid item xs={12} md={6} className={classes.bookingCalender}>
         <Calender />
       </Grid>
     </Grid>
