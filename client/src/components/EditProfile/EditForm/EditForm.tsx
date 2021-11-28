@@ -1,7 +1,9 @@
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import Textfield from '../../FormsUI/Textfield';
 import { Grid, makeStyles, Typography } from '@material-ui/core';
+
+import Textfield from '../../FormsUI/Textfield';
+import Select from '../../FormsUI/Select';
 
 const INITIAL_FORM_STATE = {
   firstName: '',
@@ -24,6 +26,7 @@ const useStyles = makeStyles({
 
 const EditForm = (): JSX.Element => {
   const classes = useStyles();
+  const options = ['Male', 'Female', 'Other'];
 
   return (
     <div>
@@ -58,6 +61,14 @@ const EditForm = (): JSX.Element => {
             </Grid>
             <Grid item xs={12} sm={8}>
               <Textfield name="lastName" label={<Typography className={classes.label}>Doe</Typography>} />
+            </Grid>
+            <Grid item xs={12} sm={3}>
+              <Typography variant="body1" style={{ color: '#000' }}>
+                Gender
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Select name="gender" options={options} />
             </Grid>
           </Grid>
         </Form>
