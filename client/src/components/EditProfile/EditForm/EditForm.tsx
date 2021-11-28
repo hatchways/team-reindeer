@@ -13,6 +13,7 @@ const INITIAL_FORM_STATE = {
   birthDate: '',
   email: '',
   phone: '',
+  address: '',
 };
 
 const FORM_VALIDATION = Yup.object().shape({
@@ -22,6 +23,7 @@ const FORM_VALIDATION = Yup.object().shape({
   birthDate: Yup.date().required('This field cannot be empty'),
   email: Yup.string().email('Invalid email.').required('This field cannot be empty'),
   phone: Yup.number().integer().typeError('Please enter a valid phone number').required('This field cannot be empty'),
+  address: Yup.string().required('Required'),
 });
 
 const useStyles = makeStyles({
