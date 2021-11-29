@@ -7,28 +7,21 @@ interface Props {
   children?: React.ReactNode;
   onClick?: (values: any) => void;
   type: string;
-  size: string;
+  size: 'large' | 'medium' | 'small';
   variant: 'text' | 'contained' | 'outlined';
   className: string;
   fullWidth: boolean;
 }
 
-const ButtonWrapper: React.FC<Props> = ({ onClick, color, size, variant, className, fullWidth, children }) => {
+const ButtonWrapper: React.FC<Props> = ({ color, size, variant, className, fullWidth, children }) => {
   const { submitForm } = useFormikContext();
 
   const handleSubmit = () => {
     submitForm();
   };
 
-  // const configButton = {
-  //   variant: 'contained',
-  //   color: 'primary',
-  //   fullWidth: true,
-  //   onClick: handleSubmit,
-  // };
-
   return (
-    <Button color={color} variant={variant} onClick={handleSubmit} size="large" fullWidth={fullWidth}>
+    <Button color={color} variant={variant} onClick={handleSubmit} size={size} fullWidth={fullWidth}>
       {children}
     </Button>
   );
