@@ -9,11 +9,11 @@ interface Props {
   type: string;
   size: 'large' | 'medium' | 'small';
   variant: 'text' | 'contained' | 'outlined';
-  className: string;
-  fullWidth: boolean;
+  className?: string;
+  fullWidth?: boolean;
 }
 
-const ButtonWrapper: React.FC<Props> = ({ color, size, variant, className, fullWidth, children }) => {
+const ButtonWrapper: React.FC<Props> = ({ color, size, variant, fullWidth, children }) => {
   const { submitForm } = useFormikContext();
 
   const handleSubmit = () => {

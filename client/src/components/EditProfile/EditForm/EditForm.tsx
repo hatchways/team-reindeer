@@ -1,11 +1,12 @@
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { Grid, makeStyles, Typography } from '@material-ui/core';
+import { Box, Grid, Typography } from '@material-ui/core';
 
 import Textfield from '../../FormsUI/Textfield';
 import Select from '../../FormsUI/Select';
 import DateTimePicker from '../../FormsUI/DateTimePicker';
 import Button from '../../FormsUI/Button';
+import useStyles from './useStyles';
 
 const INITIAL_FORM_STATE = {
   firstName: '',
@@ -28,26 +29,6 @@ const FORM_VALIDATION = Yup.object().shape({
   address: Yup.string().required('Required'),
   message: Yup.string(),
 });
-
-const useStyles = makeStyles((theme) => ({
-  label: {
-    fontSize: 19,
-    color: 'rgb(0,0,0,0.4)',
-    paddingLeft: '5px',
-  },
-  submit: {
-    padding: 10,
-    width: 160,
-    height: 56,
-    borderRadius: theme.shape.borderRadius,
-    borderStyle: 'none',
-    margin: '0 auto',
-    fontSize: 16,
-    backgroundColor: '#f14140',
-    fontWeight: 'bold',
-    color: theme.palette.secondary.main,
-  },
-}));
 
 const EditForm = (): JSX.Element => {
   const classes = useStyles();
@@ -72,7 +53,7 @@ const EditForm = (): JSX.Element => {
               </Typography>
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" style={{ color: '#000' }}>
+              <Typography variant="body1" className={classes.typography}>
                 FIRST NAME
               </Typography>
             </Grid>
@@ -80,7 +61,7 @@ const EditForm = (): JSX.Element => {
               <Textfield name="firstName" />
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" style={{ color: '#000' }}>
+              <Typography variant="body1" className={classes.typography}>
                 LAST NAME
               </Typography>
             </Grid>
@@ -88,7 +69,7 @@ const EditForm = (): JSX.Element => {
               <Textfield name="lastName" />
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" style={{ color: '#000' }}>
+              <Typography variant="body1" className={classes.typography}>
                 GENDER
               </Typography>
             </Grid>
@@ -96,7 +77,7 @@ const EditForm = (): JSX.Element => {
               <Select name="gender" options={options} />
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" style={{ color: '#000' }}>
+              <Typography variant="body1" className={classes.typography}>
                 BIRTH DATE
               </Typography>
             </Grid>
@@ -104,7 +85,7 @@ const EditForm = (): JSX.Element => {
               <DateTimePicker name="birthDate" />
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" style={{ color: '#000' }}>
+              <Typography variant="body1" className={classes.typography}>
                 EMAIL ADDRESS
               </Typography>
             </Grid>
@@ -112,7 +93,7 @@ const EditForm = (): JSX.Element => {
               <Textfield name="email" />
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" style={{ color: '#000' }}>
+              <Typography variant="body1" className={classes.typography}>
                 PHONE NUMBER
               </Typography>
             </Grid>
@@ -120,7 +101,7 @@ const EditForm = (): JSX.Element => {
               <Textfield name="phone" />
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" style={{ color: '#000' }}>
+              <Typography variant="body1" className={classes.typography}>
                 WHERE YOU LIVE
               </Typography>
             </Grid>
@@ -128,26 +109,19 @@ const EditForm = (): JSX.Element => {
               <Textfield name="address" />
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" style={{ color: '#000' }}>
+              <Typography variant="body1" className={classes.typography}>
                 DESCRIBE YOURSELF
               </Typography>
             </Grid>
             <Grid item xs={12} sm={8}>
               <Textfield name="message" multiline={true} rows={4} />
             </Grid>
-            <Grid item xs={12} sm={8}>
-              <Button
-                fullWidth={false}
-                type="submit"
-                size="large"
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Save
-              </Button>
-            </Grid>
           </Grid>
+          <Box className={classes.boxButton}>
+            <Button type="submit" size="large" variant="contained" color="primary">
+              Save
+            </Button>
+          </Box>
         </Form>
       </Formik>
     </div>
