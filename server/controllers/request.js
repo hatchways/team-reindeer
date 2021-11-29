@@ -19,10 +19,10 @@ const createRequest = async (req, res) => {
 };
 
 // @desc UPDATE : Update request with approved or decline
-// @route PUT
+// @route PATCH
 
 const updateRequest = async (req, res) => {
-  const request = await Request.findOneAndUpdate(
+  const request = await Request.findIdAndUpdate(
     { _id: req.params.id },
     req.body,
     {

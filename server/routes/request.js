@@ -9,7 +9,7 @@ const {
 } = require("../controllers/request");
 
 router.route("/").get(protect, getRequests);
-router.route("/").post(protect, createRequest);
-router.route("/:id").patch(protect, updateRequest);
+router.route("/create").post(protect, createRequest);
+router.route("/:id").put(protect, updateRequest);
 
 module.exports = router;
