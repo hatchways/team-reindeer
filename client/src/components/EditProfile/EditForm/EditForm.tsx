@@ -5,6 +5,7 @@ import { Grid, makeStyles, Typography } from '@material-ui/core';
 import Textfield from '../../FormsUI/Textfield';
 import Select from '../../FormsUI/Select';
 import DateTimePicker from '../../FormsUI/DateTimePicker';
+import Button from '../../FormsUI/Button';
 
 const INITIAL_FORM_STATE = {
   firstName: '',
@@ -28,13 +29,25 @@ const FORM_VALIDATION = Yup.object().shape({
   message: Yup.string(),
 });
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   label: {
     fontSize: 19,
     color: 'rgb(0,0,0,0.4)',
     paddingLeft: '5px',
   },
-});
+  submit: {
+    padding: 10,
+    width: 160,
+    height: 56,
+    borderRadius: theme.shape.borderRadius,
+    borderStyle: 'none',
+    margin: '0 auto',
+    fontSize: 16,
+    backgroundColor: '#f14140',
+    fontWeight: 'bold',
+    color: theme.palette.secondary.main,
+  },
+}));
 
 const EditForm = (): JSX.Element => {
   const classes = useStyles();
@@ -121,6 +134,18 @@ const EditForm = (): JSX.Element => {
             </Grid>
             <Grid item xs={12} sm={8}>
               <Textfield name="message" multiline={true} rows={4} />
+            </Grid>
+            <Grid item xs={12} sm={8}>
+              <Button
+                fullWidth={false}
+                type="submit"
+                size="large"
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Save
+              </Button>
             </Grid>
           </Grid>
         </Form>
