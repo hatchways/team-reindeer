@@ -22,9 +22,10 @@ const createRequest = async (req, res) => {
 // @route PATCH
 
 const updateRequest = async (req, res) => {
-  const request = await Request.findIdAndUpdate(
+  const { status } = req.body;
+  const request = await Request.findOneAndUpdate(
     { _id: req.params.id },
-    req.body,
+    { $set: { status: status } },
     {
       new: true,
     }
