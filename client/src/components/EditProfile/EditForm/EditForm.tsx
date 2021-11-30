@@ -8,7 +8,7 @@ import DateTimePicker from '../../FormsUI/DateTimePicker';
 import Button from '../../FormsUI/Button';
 import useStyles from './useStyles';
 
-const INITIAL_FORM_STATE = {
+const initial_form_state = {
   firstName: '',
   lastName: '',
   gender: '',
@@ -19,7 +19,7 @@ const INITIAL_FORM_STATE = {
   message: '',
 };
 
-const FORM_VALIDATION = Yup.object().shape({
+const form_validation = Yup.object().shape({
   firstName: Yup.string().required('This field cannot be empty'),
   lastName: Yup.string().required('This field cannot be empty'),
   gender: Yup.string().required('This field cannot be empty'),
@@ -35,12 +35,12 @@ const EditForm = (): JSX.Element => {
   const options = ['Male', 'Female', 'Other'];
 
   return (
-    <div>
+    <Box>
       <Formik
         initialValues={{
-          ...INITIAL_FORM_STATE,
+          ...initial_form_state,
         }}
-        validationSchema={FORM_VALIDATION}
+        validationSchema={form_validation}
         onSubmit={(values) => {
           console.log(values);
         }}
@@ -54,67 +54,76 @@ const EditForm = (): JSX.Element => {
             </Grid>
             <Grid item xs={12} sm={3}>
               <Typography variant="body1" className={classes.typography}>
-                FIRST NAME
+                First Name
               </Typography>
             </Grid>
             <Grid item xs={12} sm={8}>
-              <Textfield name="firstName" />
+              <Textfield name="firstName" label={<Typography className={classes.label}>firstName</Typography>} />
             </Grid>
             <Grid item xs={12} sm={3}>
               <Typography variant="body1" className={classes.typography}>
-                LAST NAME
+                Last Name
               </Typography>
             </Grid>
             <Grid item xs={12} sm={8}>
-              <Textfield name="lastName" />
+              <Textfield name="lastName" label={<Typography className={classes.label}>lastName</Typography>} />
             </Grid>
             <Grid item xs={12} sm={3}>
               <Typography variant="body1" className={classes.typography}>
-                GENDER
+                Gender
               </Typography>
             </Grid>
             <Grid item xs={12} sm={8}>
-              <Select name="gender" options={options} />
+              <Select
+                name="gender"
+                options={options}
+                label={<Typography className={classes.label}>gender</Typography>}
+              />
             </Grid>
             <Grid item xs={12} sm={3}>
               <Typography variant="body1" className={classes.typography}>
-                BIRTH DATE
+                Birth Date
               </Typography>
             </Grid>
             <Grid item xs={12} sm={8}>
-              <DateTimePicker name="birthDate" />
+              <DateTimePicker name="birthDate" label={<Typography className={classes.label}>birthDate</Typography>} />
             </Grid>
             <Grid item xs={12} sm={3}>
               <Typography variant="body1" className={classes.typography}>
-                EMAIL ADDRESS
+                Email Address
               </Typography>
             </Grid>
             <Grid item xs={12} sm={8}>
-              <Textfield name="email" />
+              <Textfield name="email" label={<Typography className={classes.label}>email</Typography>} />
             </Grid>
             <Grid item xs={12} sm={3}>
               <Typography variant="body1" className={classes.typography}>
-                PHONE NUMBER
+                Phone Number
               </Typography>
             </Grid>
             <Grid item xs={12} sm={8}>
-              <Textfield name="phone" />
+              <Textfield name="phone" label={<Typography className={classes.label}>phone</Typography>} />
             </Grid>
             <Grid item xs={12} sm={3}>
               <Typography variant="body1" className={classes.typography}>
-                WHERE YOU LIVE
+                Where You Live
               </Typography>
             </Grid>
             <Grid item xs={12} sm={8}>
-              <Textfield name="address" />
+              <Textfield name="address" label={<Typography className={classes.label}>address</Typography>} />
             </Grid>
             <Grid item xs={12} sm={3}>
               <Typography variant="body1" className={classes.typography}>
-                DESCRIBE YOURSELF
+                Describe Yourself
               </Typography>
             </Grid>
             <Grid item xs={12} sm={8}>
-              <Textfield name="message" multiline={true} rows={4} />
+              <Textfield
+                name="message"
+                multiline={true}
+                rows={4}
+                label={<Typography className={classes.label}>about you</Typography>}
+              />
             </Grid>
           </Grid>
           <Box className={classes.boxButton}>
@@ -124,7 +133,7 @@ const EditForm = (): JSX.Element => {
           </Box>
         </Form>
       </Formik>
-    </div>
+    </Box>
   );
 };
 

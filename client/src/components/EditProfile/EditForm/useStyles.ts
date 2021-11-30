@@ -8,6 +8,12 @@ const useStyles = makeStyles(() => ({
   typography: {
     color: '#000',
     fontWeight: 400,
+    textTransform: 'uppercase',
+  },
+  label: {
+    fontSize: 19,
+    color: 'rgb(0,0,0,0.4)',
+    paddingLeft: '5px',
   },
 }));
 
