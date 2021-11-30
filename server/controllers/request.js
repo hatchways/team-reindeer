@@ -14,7 +14,9 @@ const getRequests = async (req, res) => {
 // @route POST
 
 const createRequest = async (req, res) => {
-  const request = await Request.create(req.body);
+  const { sitterId, start, end } = req.body;
+  const userId = req.user.id;
+  const request = await Request.create({ userId, sitterId, start, end });
   res.send(request);
 };
 
