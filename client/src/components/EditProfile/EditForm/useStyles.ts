@@ -6,7 +6,6 @@ const useStyles = makeStyles(() => ({
     paddingTop: '10px',
   },
   typography: {
-    color: '#000',
     fontWeight: 400,
     textTransform: 'uppercase',
   },

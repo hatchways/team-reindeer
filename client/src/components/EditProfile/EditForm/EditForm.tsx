@@ -51,7 +51,7 @@ const EditForm = (): JSX.Element => {
               </Typography>
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" className={classes.typography}>
+              <Typography variant="body1" color="textPrimary" className={classes.typography}>
                 First Name
               </Typography>
             </Grid>
@@ -59,7 +59,7 @@ const EditForm = (): JSX.Element => {
               <Textfield name="firstName" label={<Typography className={classes.inputLabel}>firstName</Typography>} />
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" className={classes.typography}>
+              <Typography variant="body1" color="textPrimary" className={classes.typography}>
                 Last Name
               </Typography>
             </Grid>
@@ -67,7 +67,7 @@ const EditForm = (): JSX.Element => {
               <Textfield name="lastName" label={<Typography className={classes.inputLabel}>lastName</Typography>} />
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" className={classes.typography}>
+              <Typography variant="body1" color="textPrimary" className={classes.typography}>
                 Gender
               </Typography>
             </Grid>
@@ -79,7 +79,7 @@ const EditForm = (): JSX.Element => {
               />
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" className={classes.typography}>
+              <Typography variant="body1" color="textPrimary" className={classes.typography}>
                 Birth Date
               </Typography>
             </Grid>
@@ -90,7 +90,7 @@ const EditForm = (): JSX.Element => {
               />
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" className={classes.typography}>
+              <Typography variant="body1" color="textPrimary" className={classes.typography}>
                 Email Address
               </Typography>
             </Grid>
@@ -98,7 +98,7 @@ const EditForm = (): JSX.Element => {
               <Textfield name="email" label={<Typography className={classes.inputLabel}>email</Typography>} />
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" className={classes.typography}>
+              <Typography variant="body1" color="textPrimary" className={classes.typography}>
                 Phone Number
               </Typography>
             </Grid>
@@ -106,7 +106,7 @@ const EditForm = (): JSX.Element => {
               <Textfield name="phone" label={<Typography className={classes.inputLabel}>phone</Typography>} />
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" className={classes.typography}>
+              <Typography variant="body1" color="textPrimary" className={classes.typography}>
                 Where You Live
               </Typography>
             </Grid>
@@ -114,7 +114,7 @@ const EditForm = (): JSX.Element => {
               <Textfield name="address" label={<Typography className={classes.inputLabel}>address</Typography>} />
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="body1" className={classes.typography}>
+              <Typography variant="body1" color="textPrimary" className={classes.typography}>
                 Describe Yourself
               </Typography>
             </Grid>
