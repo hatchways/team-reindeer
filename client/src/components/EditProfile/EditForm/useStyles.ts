@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: 400,
     textTransform: 'uppercase',
   },
-  label: {
+  inputLabel: {
     fontSize: 19,
     color: 'rgb(0,0,0,0.4)',
     paddingLeft: '5px',
