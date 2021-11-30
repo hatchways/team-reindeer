@@ -2,7 +2,7 @@ import React from 'react';
 import { TextField, MenuItem } from '@material-ui/core';
 import { useField, useFormikContext } from 'formik';
 
-const SelectWrapper = ({ name, options, ...otherProps }: any): JSX.Element => {
+export const SelectWrapper = ({ name, options, ...otherProps }: any): JSX.Element => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
 
@@ -37,5 +37,3 @@ const SelectWrapper = ({ name, options, ...otherProps }: any): JSX.Element => {
     </TextField>
   );
 };
-
-export default SelectWrapper;

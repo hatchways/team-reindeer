@@ -13,7 +13,7 @@ interface Props {
   fullWidth?: boolean;
 }
 
-const ButtonWrapper: React.FC<Props> = ({ color, size, variant, fullWidth, children }) => {
+export const ButtonWrapper: React.FC<Props> = ({ color, size, variant, fullWidth, children }) => {
   const { submitForm } = useFormikContext();
 
   const handleSubmit = () => {
@@ -26,5 +26,3 @@ const ButtonWrapper: React.FC<Props> = ({ color, size, variant, fullWidth, child
     </Button>
   );
 };
-
-export default ButtonWrapper;

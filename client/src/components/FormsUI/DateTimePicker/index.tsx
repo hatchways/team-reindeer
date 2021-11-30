@@ -1,7 +1,7 @@
 import { TextField } from '@material-ui/core';
 import { useField } from 'formik';
 
-const DateTimePicker = ({ name, ...otherProps }: any) => {
+export const DateTimePicker = ({ name, ...otherProps }: any) => {
   const [field, meta] = useField(name);
 
   const configDateTimePicker = {
@@ -22,5 +22,3 @@ const DateTimePicker = ({ name, ...otherProps }: any) => {
 
   return <TextField {...configDateTimePicker} />;
 };
-
-export default DateTimePicker;

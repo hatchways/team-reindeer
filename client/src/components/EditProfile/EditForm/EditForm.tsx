@@ -2,10 +2,10 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Box, Grid, Typography } from '@material-ui/core';
 
-import Textfield from '../../FormsUI/Textfield';
-import Select from '../../FormsUI/Select';
-import DateTimePicker from '../../FormsUI/DateTimePicker';
-import Button from '../../FormsUI/Button';
+import { TextFieldWrapper as Textfield } from '../../FormsUI/Textfield';
+import { SelectWrapper as Select } from '../../FormsUI/Select';
+import { DateTimePicker } from '../../FormsUI/DateTimePicker';
+import { ButtonWrapper as Button } from '../../FormsUI/Button';
 import useStyles from './useStyles';
 
 const initialFormState = {
