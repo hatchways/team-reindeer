@@ -27,10 +27,10 @@ const SelectWrapper = ({ name, options, ...otherProps }: any): JSX.Element => {
 
   return (
     <TextField {...configSelect}>
-      {Object.keys(options).map((item, pos) => {
+      {options.map((item: any, pos: any) => {
         return (
           <MenuItem key={pos} value={item}>
-            {options[item]}
+            {item}
           </MenuItem>
         );
       })}
