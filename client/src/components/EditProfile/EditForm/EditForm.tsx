@@ -53,21 +53,26 @@ interface Props {
 const initialFormState = {
   firstName: '',
   lastName: '',
-  gender: '',
-  birthDate: '',
-  email: '',
-  phone: '',
-  address: '',
   description: '',
+  gender: '',
+  email: '',
+  address: '',
+  phoneNumber: '',
+  dateOfBirth: '',
+  availability: '',
+  photo: '',
 };
 
 const formValidation = Yup.object().shape({
   firstName: Yup.string().required('This field cannot be empty'),
   lastName: Yup.string().required('This field cannot be empty'),
   gender: Yup.string().required('This field cannot be empty'),
-  birthDate: Yup.date().required('This field cannot be empty'),
+  dateOfBirth: Yup.date().required('This field cannot be empty'),
   email: Yup.string().email('Invalid email.').required('This field cannot be empty'),
-  phone: Yup.number().integer().typeError('Please enter a valid phone number').required('This field cannot be empty'),
+  phoneNumber: Yup.number()
+    .integer()
+    .typeError('Please enter a valid phone number')
+    .required('This field cannot be empty'),
   address: Yup.string().required('Required'),
   description: Yup.string(),
 });
@@ -78,13 +83,7 @@ const EditForm = ({ handleSubmit }: Props): JSX.Element => {
 
   return (
     <Box>
-      <Formik
-        initialValues={initialFormState}
-        validationSchema={formValidation}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-      >
+      <Formik initialValues={initialFormState} validationSchema={formValidation} onSubmit={handleSubmit}>
         <Form>
           <Grid container alignItems="center" spacing={2}>
             <Grid item xs={12}>
@@ -127,7 +126,7 @@ const EditForm = ({ handleSubmit }: Props): JSX.Element => {
             </Grid>
             <Grid item xs={12} sm={8}>
               <DateTimePicker
-                name="birthDate"
+                name="dateOfBirth"
                 label={<Typography className={classes.inputLabel}>birthDate</Typography>}
               />
             </Grid>
@@ -145,7 +144,7 @@ const EditForm = ({ handleSubmit }: Props): JSX.Element => {
               </Typography>
             </Grid>
             <Grid item xs={12} sm={8}>
-              <Textfield name="phone" label={<Typography className={classes.inputLabel}>phone</Typography>} />
+              <Textfield name="phoneNumber" label={<Typography className={classes.inputLabel}>phone</Typography>} />
             </Grid>
             <Grid item xs={12} sm={3}>
               <Typography variant="body1" color="textPrimary" className={classes.typography}>
