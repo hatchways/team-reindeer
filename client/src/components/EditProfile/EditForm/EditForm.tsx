@@ -1,4 +1,4 @@
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { Box, Grid, Typography } from '@material-ui/core';
 
@@ -7,6 +7,48 @@ import { SelectWrapper as Select } from '../../FormsUI/Select';
 import { DateTimePicker } from '../../FormsUI/DateTimePicker';
 import { ButtonWrapper as Button } from '../../FormsUI/Button';
 import useStyles from './useStyles';
+
+interface Props {
+  handleSubmit: (
+    {
+      firstName,
+      lastName,
+      description,
+      gender,
+      email,
+      address,
+      phoneNumber,
+      dateOfBirth,
+      availability,
+      photo,
+    }: {
+      firstName: string;
+      lastName: string;
+      description: string;
+      gender: string;
+      email: string;
+      address: string;
+      phoneNumber: string;
+      dateOfBirth: Date;
+      availability: [Date];
+      photo: string;
+    },
+    {
+      setSubmitting,
+    }: FormikHelpers<{
+      firstName: string;
+      lastName: string;
+      description: string;
+      gender: string;
+      email: string;
+      address: string;
+      phoneNumber: string;
+      dateOfBirth: Date;
+      availability: [Date];
+      photo: string;
+    }>,
+  ) => void;
+}
 
 const initialFormState = {
   firstName: '',
@@ -30,7 +72,7 @@ const formValidation = Yup.object().shape({
   description: Yup.string(),
 });
 
-const EditForm = (): JSX.Element => {
+const EditForm = ({ handleSubmit }: Props): JSX.Element => {
   const classes = useStyles();
   const options = ['Male', 'Female', 'Other'];
 
