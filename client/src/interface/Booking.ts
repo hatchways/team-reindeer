@@ -1,7 +1,7 @@
 export interface Booking {
-  userId?: string;
-  sitterName: string;
-  start: string;
-  end: string;
+  userId: string;
+  sitterId: string;
+  start: Date;
+  end: Date;
   status: string;
 }

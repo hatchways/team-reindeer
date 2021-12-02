@@ -8,12 +8,13 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 interface Props {
   bookingType: string;
-  start: string;
-  sitterName: string;
+  userId?: string;
+  start?: Date;
+  sitterId?: string;
   status?: string;
 }
 
-const Booking = ({ bookingType, start, sitterName, status }: Props): JSX.Element => {
+const BookingCard = ({ bookingType, start, status }: Props): JSX.Element => {
   const classes = useStyles();
   return (
     <Card className={bookingType === `next` ? classes.nextBooking : classes.bookings}>
@@ -30,7 +31,7 @@ const Booking = ({ bookingType, start, sitterName, status }: Props): JSX.Element
           <Box display="flex" alignItems="center">
             <AvatarDisplay />
             <Typography className={classes.clientName} variant="h3" gutterBottom>
-              {sitterName}
+              Dog Owner
             </Typography>
           </Box>
         </CardContent>
@@ -49,4 +50,4 @@ const Booking = ({ bookingType, start, sitterName, status }: Props): JSX.Element
   );
 };
 
-export default Booking;
+export default BookingCard;

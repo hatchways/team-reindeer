@@ -1,6 +1,5 @@
-import { bookingsList } from '../../mocks/bookingsList';
+import { mockBookingData } from '../../pages/Bookings/mockBookingData';
 
-const sortedBookings = bookingsList.sort((a, b) => Date.parse(a.start) - Date.parse(b.start));
-export const booking = sortedBookings.find((booking) => Date.parse(booking.start) > Date.now());
+const sortedBookings = mockBookingData.sort((a, b) => a.start.getTime() - b.start.getTime());
 
 export default sortedBookings;
