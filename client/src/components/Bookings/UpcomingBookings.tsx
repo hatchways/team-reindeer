@@ -13,7 +13,7 @@ const UpcomingBookings = (): JSX.Element => {
       <Typography className={classes.title} variant="h6" gutterBottom>
         Upcoming Bookings:
       </Typography>
-      {request.bookings.map((booking, i) => (
+      {request.bookings.slice(1).map((booking, i) => (
         <Booking
           key={i}
           bookingType="upcomings"

@@ -1,40 +1,20 @@
 import { useContext, createContext, FunctionComponent, useState, useEffect } from 'react';
 import { Booking } from '../interface/Booking';
-
-const bookingsList = [
-  {
-    sitterName: 'John',
-    start: '2021-12-04',
-    end: '2021-12-04',
-    status: 'accepted',
-  },
-  {
-    sitterName: 'John',
-    start: '2021-12-06',
-    end: '2021-12-06',
-    status: 'accepted',
-  },
-  {
-    sitterName: 'John',
-    start: '2021-12-08',
-    end: '2021-12-08',
-    status: 'accepted',
-  },
-];
+import sortedBookings from '../helpers/utils/sortBookings';
 
 interface IBookingContext {
   bookings: Booking[];
 }
 
 export const BookingContext = createContext<IBookingContext>({
-  bookings: bookingsList,
+  bookings: sortedBookings,
 });
 
 export const BookingProvider: FunctionComponent = ({ children }): JSX.Element => {
   const [bookings, setBookings] = useState<Booking[]>([]);
 
   useEffect(() => {
-    setBookings(bookingsList);
+    setBookings(sortedBookings);
   }, [bookings]);
 
   return <BookingContext.Provider value={{ bookings }}>{children}</BookingContext.Provider>;

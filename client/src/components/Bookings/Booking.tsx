@@ -10,7 +10,7 @@ interface Props {
   bookingType: string;
   start: string;
   sitterName: string;
-  status: string;
+  status?: string;
 }
 
 const Booking = ({ bookingType, start, sitterName, status }: Props): JSX.Element => {
