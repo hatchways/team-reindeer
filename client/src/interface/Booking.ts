@@ -5,7 +5,3 @@ export interface Booking {
   end: string;
   status: string;
 }
-
-export interface getBookings {
-  bookings?: Booking[];
-}
