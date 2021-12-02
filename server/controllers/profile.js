@@ -12,11 +12,14 @@ exports.editProfile = asyncHandler(async (req, res, next) => {
     res.status(404);
     throw new Error("User doesn't exist");
   }
-  user.profile.set(req.body);
-  const updatedUser = await user.save();
+
+  const profile = await Profile.findByIdAndUpdate(user.profile, req.body, {
+    new: true,
+  });
+
   res.status(200).json({
     success: {
-      profile: updatedUser.profile,
+      profile,
     },
   });
 });
