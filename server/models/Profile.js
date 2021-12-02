@@ -1,40 +1,48 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const timeSlot = new mongoose.Schema({ start: Date, end: Date });
 
 const profileSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    default: "",
+    default: '',
   },
   lastName: {
     type: String,
-    default: "",
+    default: '',
   },
   description: {
     type: String,
-    default: "",
+    default: '',
+  },
+  gender: {
+    type: String,
+    default: '',
+  },
+  email: {
+    type: String,
+    default: '',
   },
   address: {
     type: String,
-    default: "",
+    default: '',
   },
   phoneNumber: {
     type: String,
-    default: "",
+    default: '',
   },
   dateOfBirth: {
     type: Date,
-    default: null
+    default: null,
   },
   availability: {
     type: [Date],
-    default: []
+    default: [],
   },
   photo: {
     type: String,
-    default: "",
+    default: '',
   },
 });
 
-module.exports = Profile = mongoose.model("Profile", profileSchema);
+module.exports = Profile = mongoose.model('Profile', profileSchema);
