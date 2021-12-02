@@ -70,8 +70,8 @@ const EditMenu = (): JSX.Element => {
       email: string;
       address: string;
       phoneNumber: string;
-      dateOfBirth: Date;
-      availability: [Date];
+      dateOfBirth: string;
+      availability: string;
       photo: string;
     },
     {
@@ -84,8 +84,8 @@ const EditMenu = (): JSX.Element => {
       email: string;
       address: string;
       phoneNumber: string;
-      dateOfBirth: Date;
-      availability: [Date];
+      dateOfBirth: string;
+      availability: string;
       photo: string;
     }>,
   ) => {

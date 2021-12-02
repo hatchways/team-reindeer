@@ -29,8 +29,8 @@ interface Props {
       email: string;
       address: string;
       phoneNumber: string;
-      dateOfBirth: Date;
-      availability: [Date];
+      dateOfBirth: string;
+      availability: string;
       photo: string;
     },
     {
@@ -43,8 +43,8 @@ interface Props {
       email: string;
       address: string;
       phoneNumber: string;
-      dateOfBirth: Date;
-      availability: [Date];
+      dateOfBirth: string;
+      availability: string;
       photo: string;
     }>,
   ) => void;
@@ -80,100 +80,101 @@ const formValidation = Yup.object().shape({
 const EditForm = ({ handleSubmit }: Props): JSX.Element => {
   const classes = useStyles();
   const options = ['Male', 'Female', 'Other'];
-
   return (
     <Box>
       <Formik initialValues={initialFormState} validationSchema={formValidation} onSubmit={handleSubmit}>
-        <Form>
-          <Grid container alignItems="center" spacing={2}>
-            <Grid item xs={12}>
-              <Typography variant="h6" align="center">
-                Edit Profile
-              </Typography>
+        {({ handleSubmit }) => (
+          <Form onSubmit={handleSubmit}>
+            <Grid container alignItems="center" spacing={2}>
+              <Grid item xs={12}>
+                <Typography variant="h6" align="center">
+                  Edit Profile
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <Typography variant="body1" color="textPrimary" className={classes.typography}>
+                  First Name
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <Textfield name="firstName" label={<Typography className={classes.inputLabel}>firstName</Typography>} />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <Typography variant="body1" color="textPrimary" className={classes.typography}>
+                  Last Name
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <Textfield name="lastName" label={<Typography className={classes.inputLabel}>lastName</Typography>} />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <Typography variant="body1" color="textPrimary" className={classes.typography}>
+                  Gender
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <Select
+                  name="gender"
+                  options={options}
+                  label={<Typography className={classes.inputLabel}>gender</Typography>}
+                />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <Typography variant="body1" color="textPrimary" className={classes.typography}>
+                  Birth Date
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <DateTimePicker
+                  name="dateOfBirth"
+                  label={<Typography className={classes.inputLabel}>birthDate</Typography>}
+                />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <Typography variant="body1" color="textPrimary" className={classes.typography}>
+                  Email Address
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <Textfield name="email" label={<Typography className={classes.inputLabel}>email</Typography>} />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <Typography variant="body1" color="textPrimary" className={classes.typography}>
+                  Phone Number
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <Textfield name="phoneNumber" label={<Typography className={classes.inputLabel}>phone</Typography>} />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <Typography variant="body1" color="textPrimary" className={classes.typography}>
+                  Where You Live
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <Textfield name="address" label={<Typography className={classes.inputLabel}>address</Typography>} />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <Typography variant="body1" color="textPrimary" className={classes.typography}>
+                  Describe Yourself
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <Textfield
+                  name="description"
+                  multiline={true}
+                  rows={4}
+                  label={<Typography className={classes.inputLabel}>description</Typography>}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={3}>
-              <Typography variant="body1" color="textPrimary" className={classes.typography}>
-                First Name
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={8}>
-              <Textfield name="firstName" label={<Typography className={classes.inputLabel}>firstName</Typography>} />
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <Typography variant="body1" color="textPrimary" className={classes.typography}>
-                Last Name
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={8}>
-              <Textfield name="lastName" label={<Typography className={classes.inputLabel}>lastName</Typography>} />
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <Typography variant="body1" color="textPrimary" className={classes.typography}>
-                Gender
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={8}>
-              <Select
-                name="gender"
-                options={options}
-                label={<Typography className={classes.inputLabel}>gender</Typography>}
-              />
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <Typography variant="body1" color="textPrimary" className={classes.typography}>
-                Birth Date
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={8}>
-              <DateTimePicker
-                name="dateOfBirth"
-                label={<Typography className={classes.inputLabel}>birthDate</Typography>}
-              />
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <Typography variant="body1" color="textPrimary" className={classes.typography}>
-                Email Address
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={8}>
-              <Textfield name="email" label={<Typography className={classes.inputLabel}>email</Typography>} />
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <Typography variant="body1" color="textPrimary" className={classes.typography}>
-                Phone Number
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={8}>
-              <Textfield name="phoneNumber" label={<Typography className={classes.inputLabel}>phone</Typography>} />
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <Typography variant="body1" color="textPrimary" className={classes.typography}>
-                Where You Live
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={8}>
-              <Textfield name="address" label={<Typography className={classes.inputLabel}>address</Typography>} />
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <Typography variant="body1" color="textPrimary" className={classes.typography}>
-                Describe Yourself
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={8}>
-              <Textfield
-                name="description"
-                multiline={true}
-                rows={4}
-                label={<Typography className={classes.inputLabel}>description</Typography>}
-              />
-            </Grid>
-          </Grid>
-          <Box className={classes.boxButton}>
-            <Button type="submit" size="large" variant="contained" color="primary">
-              Save
-            </Button>
-          </Box>
-        </Form>
+            <Box className={classes.boxButton}>
+              <Button type="submit" size="large" variant="contained" color="primary">
+                Save
+              </Button>
+            </Box>
+          </Form>
+        )}
       </Formik>
     </Box>
   );
