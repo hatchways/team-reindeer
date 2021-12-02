@@ -12,7 +12,7 @@ const editProfile = async (
   photo: string,
 ): Promise<AuthApiData> => {
   const fetchOptions: FetchOptions = {
-    method: 'PUT',
+    method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ firstName, lastName, description, address, phoneNumber, dateOfBirth, availability, photo }),
     credentials: 'include',
