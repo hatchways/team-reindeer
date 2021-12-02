@@ -6,8 +6,10 @@ const router = express.Router();
 // @route GET
 
 const getRequests = async (req, res) => {
-  const requests = await Request.find({ userId: req.user.id });
-  res.send(requests);
+  const requests = await Request.find({
+    $or: [{ userId: req.user.id }, { sitterId: req.user.id }],
+  });
+  res.json(requests);
 };
 
 // @desc  POST : Create a new request
@@ -25,8 +27,9 @@ const createRequest = async (req, res) => {
 
 const updateRequest = async (req, res) => {
   const { status } = req.body;
+  const userId = req.user.id;
   const request = await Request.findOneAndUpdate(
-    { _id: req.params.id },
+    { _id: req.params.id, userId: userId },
     { $set: { status: status } },
     {
       new: true,
