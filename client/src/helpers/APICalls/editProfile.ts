@@ -5,6 +5,8 @@ const editProfile = async (
   firstName: string,
   lastName: string,
   description: string,
+  gender: string,
+  email: string,
   address: string,
   phoneNumber: string,
   dateOfBirth: Date,
@@ -14,7 +16,18 @@ const editProfile = async (
   const fetchOptions: FetchOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ firstName, lastName, description, address, phoneNumber, dateOfBirth, availability, photo }),
+    body: JSON.stringify({
+      firstName,
+      lastName,
+      description,
+      gender,
+      email,
+      address,
+      phoneNumber,
+      dateOfBirth,
+      availability,
+      photo,
+    }),
     credentials: 'include',
   };
   return await fetch(`/profile/edit`, fetchOptions)
