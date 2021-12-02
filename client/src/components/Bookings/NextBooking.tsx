@@ -1,12 +1,22 @@
-import Booking from './Booking';
+import { useState, useEffect } from 'react';
+import BookingCard from './BookingCard';
+import { Booking } from '../../interface/Booking';
 import { useRequest } from '../../context/useBookingContext';
-import { booking } from '../../helpers/utils/sortBookings';
 
 const NextBooking = (): JSX.Element => {
-  //   const request = useRequest();
+  const [booking, setBooking] = useState<Booking | undefined>();
+  const request = useRequest();
+
+  useEffect(() => {
+    if (request.bookings) {
+      setBooking(request.bookings.find((booking) => booking.start.getTime() > Date.now()));
+    }
+  });
+
+  console.log(booking);
+
   //   finding the next booking
-  //   console.log(booking);
-  return <Booking bookingType="next" sitterName={booking.sitterName} start={booking.start} />;
+  return <BookingCard bookingType="next" start={booking.start} />;
 };
 
 export default NextBooking;
