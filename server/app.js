@@ -45,6 +45,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', uploadRouter);
+app.use('/profile', profileRouter);
 app.use('/auth', authRouter);
 app.use('/users', userRouter);
 
