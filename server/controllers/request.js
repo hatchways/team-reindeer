@@ -29,7 +29,7 @@ const updateRequest = async (req, res) => {
   const { status } = req.body;
   const userId = req.user.id;
   const request = await Request.findOneAndUpdate(
-    { _id: req.params.id, userId: userId },
+    { _id: req.params.id, sitterId: userId },
     { $set: { status: status } },
     {
       new: true,
