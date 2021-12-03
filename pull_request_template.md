@@ -1,7 +1,6 @@
 ### What this PR does (required):
 
-notification model is created, and it allow for a notification collection to be created in the database.
-it descripe the fields for title, description of the notification, whenever a notification is created, as well as the status and Date of the notification.
+-- list PR functionality here
 
 ### Screenshots / Videos (front-end only):
 
