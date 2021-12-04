@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const timeSlot = new Schema({ start: Date, end: Date });
 
-const requestSchema = new mongoose.Schema({
+const requestSchema = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
     required: true,
@@ -14,13 +14,18 @@ const requestSchema = new mongoose.Schema({
     ref: "User",
   },
   duration: {
-    type: Schema.timeSlot,
+    type: timeSlot,
     required: true,
   },
   status: {
     type: String,
-    enum: ["accepted", "declined", "pending", "completed"],
+    enum: ["accepted", "declined", "pending"],
     default: "pending",
+  },
+  completed: {
+    type: String,
+    type: Boolean,
+    default: false,
   },
   paid: {
     type: Boolean,
