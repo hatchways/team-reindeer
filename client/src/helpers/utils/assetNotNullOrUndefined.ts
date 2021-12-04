@@ -1,4 +1,4 @@
-export function checkIfUndefined<T>(
+export function assetNotNullOrUndefined<T>(
   argument: T | undefined | null,
   message = 'This value was promised to be there.',
 ): T {

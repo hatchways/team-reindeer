@@ -3,17 +3,14 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@mui/material/Paper';
 import { useRequest } from '../../context/useBookingContext';
 import useStyles from './useStyles';
-import { checkIfUndefined } from '../../helpers/utils/checkIfUndefined';
+import { assetNotNullOrUndefined } from '../../helpers/utils/assetNotNullOrUndefined';
 import moment from 'moment';
 
 const NextBooking = (): JSX.Element => {
   const classes = useStyles();
   const { bookings } = useRequest();
 
-  // find next Booking
-  const nextBooking = checkIfUndefined(bookings.find((booking) => booking.start.getTime() > Date.now()));
-
-  // format start date
+  const nextBooking = assetNotNullOrUndefined(bookings.find((booking) => booking.start.getTime() > Date.now()));
   const startDate = moment(nextBooking.start).format('MMMM Do YYYY');
 
   return (

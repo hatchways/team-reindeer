@@ -16,13 +16,17 @@ const UpcomingBookings = (): JSX.Element => {
       <Typography className={classes.title} variant="h6" gutterBottom>
         Past Bookings:
       </Typography>
-      {pastBookings.map((booking) => (
-        <BookingCard
-          key={booking.requestId}
-          start={moment(booking.start).format('MMMM Do YYYY')}
-          status={booking.status}
-        />
-      ))}
+      {!Boolean(pastBookings.length) ? (
+        <Typography gutterBottom>You have no past bookings.</Typography>
+      ) : (
+        pastBookings.map((booking) => (
+          <BookingCard
+            key={booking.requestId}
+            start={moment(booking.start).format('MMMM Do YYYY')}
+            status={booking.status}
+          />
+        ))
+      )}
     </Paper>
   );
 };
