@@ -2,10 +2,11 @@ import Box from '@material-ui/core/Box';
 import NextBooking from './NextBooking';
 import UpcomingBookings from './UpcomingBookings';
 import PastBookings from './PastBookings';
-
+import useStyles from './useStyles';
 const ManageBookings = (): JSX.Element => {
+  const classes = useStyles();
   return (
-    <Box display="flex" flexDirection="column" alignItems="center">
+    <Box className={classes.root} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
       <NextBooking />
       <UpcomingBookings />
       <PastBookings />
