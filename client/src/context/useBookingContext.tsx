@@ -15,7 +15,7 @@ export const BookingProvider: FunctionComponent = ({ children }): JSX.Element =>
 
   useEffect(() => {
     setBookings(sortedBookings);
-  }, [bookings]);
+  }, []);
 
   return <BookingContext.Provider value={{ bookings }}>{children}</BookingContext.Provider>;
 };
