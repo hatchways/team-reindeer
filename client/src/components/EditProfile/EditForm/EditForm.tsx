@@ -97,7 +97,7 @@ const EditForm = ({ handleSubmit }: Props): JSX.Element => {
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={8}>
-                <Textfield name="firstName" label={<Typography className={classes.inputLabel}>firstName</Typography>} />
+                <Textfield name="firstName" placeholder="firstName" />
               </Grid>
               <Grid item xs={12} sm={3}>
                 <Typography variant="body1" color="textPrimary" className={classes.typography}>
@@ -105,7 +105,7 @@ const EditForm = ({ handleSubmit }: Props): JSX.Element => {
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={8}>
-                <Textfield name="lastName" label={<Typography className={classes.inputLabel}>lastName</Typography>} />
+                <Textfield name="lastName" placeholder="lastName" />
               </Grid>
               <Grid item xs={12} sm={3}>
                 <Typography variant="body1" color="textPrimary" className={classes.typography}>
@@ -113,11 +113,7 @@ const EditForm = ({ handleSubmit }: Props): JSX.Element => {
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={8}>
-                <Select
-                  name="gender"
-                  options={options}
-                  label={<Typography className={classes.inputLabel}>gender</Typography>}
-                />
+                <Select name="gender" options={options} placeholder="gender" />
               </Grid>
               <Grid item xs={12} sm={3}>
                 <Typography variant="body1" color="textPrimary" className={classes.typography}>
@@ -125,10 +121,7 @@ const EditForm = ({ handleSubmit }: Props): JSX.Element => {
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={8}>
-                <DateTimePicker
-                  name="dateOfBirth"
-                  label={<Typography className={classes.inputLabel}>birthDate</Typography>}
-                />
+                <DateTimePicker name="dateOfBirth" placeholder="birthDate" />
               </Grid>
               <Grid item xs={12} sm={3}>
                 <Typography variant="body1" color="textPrimary" className={classes.typography}>
@@ -136,7 +129,7 @@ const EditForm = ({ handleSubmit }: Props): JSX.Element => {
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={8}>
-                <Textfield name="email" label={<Typography className={classes.inputLabel}>email</Typography>} />
+                <Textfield name="email" placeholder="email" />
               </Grid>
               <Grid item xs={12} sm={3}>
                 <Typography variant="body1" color="textPrimary" className={classes.typography}>
@@ -144,7 +137,7 @@ const EditForm = ({ handleSubmit }: Props): JSX.Element => {
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={8}>
-                <Textfield name="phoneNumber" label={<Typography className={classes.inputLabel}>phone</Typography>} />
+                <Textfield name="phoneNumber" placeholder="phoneNumber" />
               </Grid>
               <Grid item xs={12} sm={3}>
                 <Typography variant="body1" color="textPrimary" className={classes.typography}>
@@ -152,7 +145,7 @@ const EditForm = ({ handleSubmit }: Props): JSX.Element => {
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={8}>
-                <Textfield name="address" label={<Typography className={classes.inputLabel}>address</Typography>} />
+                <Textfield name="address" placeholder="address" />
               </Grid>
               <Grid item xs={12} sm={3}>
                 <Typography variant="body1" color="textPrimary" className={classes.typography}>
@@ -160,12 +153,7 @@ const EditForm = ({ handleSubmit }: Props): JSX.Element => {
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={8}>
-                <Textfield
-                  name="description"
-                  multiline={true}
-                  rows={4}
-                  label={<Typography className={classes.inputLabel}>description</Typography>}
-                />
+                <Textfield name="description" multiline={true} rows={4} placeholder="description" />
               </Grid>
             </Grid>
             <Box className={classes.boxButton}>
