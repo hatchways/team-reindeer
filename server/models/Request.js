@@ -1,32 +1,34 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const timeSlot = new Schema({ start: Date, end: Date });
 
 const requestSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
+  owner: {
+    type: Schema.Types.ObjectId,
     required: true,
     ref: "User",
   },
-  sitterId: {
-    type: mongoose.Schema.Types.ObjectId,
+  sitter: {
+    type: Schema.Types.ObjectId,
     required: true,
     ref: "User",
   },
-  start: {
-    type: Date,
-    required: true,
-  },
-  end: {
-    type: Date,
+  duration: {
+    type: Schema.timeSlot,
     required: true,
   },
   status: {
     type: String,
-    enum: ["accepted", "declined", "pending"],
+    enum: ["accepted", "declined", "pending", "completed"],
     default: "pending",
   },
   paid: {
     type: Boolean,
     default: false,
+  },
+  totalCost: {
+    type: Number,
+    default: 0,
   },
 });
 
