@@ -7,44 +7,35 @@ import AvatarDisplay from '../AvatarDisplay/AvatarDisplay';
 import SettingsIcon from '@mui/icons-material/Settings';
 
 interface Props {
-  bookingType: string;
+  requestId?: string;
   userId?: string;
-  start?: Date;
+  start: string;
   sitterId?: string;
   status?: string;
 }
 
-const BookingCard = ({ bookingType, start, status }: Props): JSX.Element => {
+const BookingCard = ({ start, status }: Props): JSX.Element => {
   const classes = useStyles();
   return (
-    <Card className={bookingType === `next` ? classes.nextBooking : classes.bookings}>
+    <Card className={classes.bookings}>
       <Box display="flex" justifyContent="space-between">
         <CardContent>
-          {bookingType === 'next' && (
-            <Typography className={classes.title} variant="h6" gutterBottom>
-              Your Next Booking:
-            </Typography>
-          )}
           <Typography className={classes.pos} variant="h3">
             {start}
           </Typography>
-          <Box display="flex" alignItems="center">
-            <AvatarDisplay />
-            <Typography className={classes.clientName} variant="h3" gutterBottom>
-              Dog Owner
-            </Typography>
-          </Box>
         </CardContent>
-        {bookingType === 'next' ? (
-          <SettingsIcon fontSize="small" />
-        ) : (
-          <Box display="flex" flexDirection="column" alignItems="end" justifyContent="space-around">
-            <SettingsIcon fontSize="small" />
-            <Typography className={classes.status} color="textSecondary" variant="h6" gutterBottom>
-              {status}
-            </Typography>
-          </Box>
-        )}
+        <SettingsIcon fontSize="small" />
+      </Box>
+      <Box display="flex" alignItems="center" justifyContent="space-between">
+        <Box display="flex" alignItems="center">
+          <AvatarDisplay />
+          <Typography className={classes.clientName} variant="h3" gutterBottom>
+            Name of Dog Owner
+          </Typography>
+        </Box>
+        <Typography className={classes.status} color="textSecondary" variant="h6" gutterBottom>
+          {status}
+        </Typography>
       </Box>
     </Card>
   );

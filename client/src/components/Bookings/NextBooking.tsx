@@ -1,22 +1,29 @@
-import { useState, useEffect } from 'react';
 import BookingCard from './BookingCard';
-import { Booking } from '../../interface/Booking';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@mui/material/Paper';
 import { useRequest } from '../../context/useBookingContext';
+import useStyles from './useStyles';
+import { checkIfUndefined } from '../../helpers/utils/checkIfUndefined';
+import moment from 'moment';
 
 const NextBooking = (): JSX.Element => {
-  const [booking, setBooking] = useState<Booking | undefined>();
-  const request = useRequest();
+  const classes = useStyles();
+  const { bookings } = useRequest();
 
-  useEffect(() => {
-    if (request.bookings) {
-      setBooking(request.bookings.find((booking) => booking.start.getTime() > Date.now()));
-    }
-  });
+  // find next Booking
+  const nextBooking = checkIfUndefined(bookings.find((booking) => booking.start.getTime() > Date.now()));
 
-  console.log(booking);
+  // format start date
+  const startDate = moment(nextBooking.start).format('MMMM Do YYYY');
 
-  //   finding the next booking
-  return <BookingCard bookingType="next" start={booking.start} />;
+  return (
+    <Paper elevation={0} className={classes.bookings}>
+      <Typography className={classes.title} variant="h6" gutterBottom>
+        Next Bookings:
+      </Typography>
+      <BookingCard start={startDate} />
+    </Paper>
+  );
 };
 
 export default NextBooking;

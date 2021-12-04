@@ -11,7 +11,7 @@ export const BookingContext = createContext<IBookingContext>({
 });
 
 export const BookingProvider: FunctionComponent = ({ children }): JSX.Element => {
-  const [bookings, setBookings] = useState<Booking[]>(sortedBookings);
+  const [bookings, setBookings] = useState<Booking[]>([]);
 
   useEffect(() => {
     setBookings(sortedBookings);

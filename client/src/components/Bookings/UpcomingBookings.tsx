@@ -1,22 +1,27 @@
 import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
+import Paper from '@mui/material/Paper';
 import BookingCard from './BookingCard';
+import moment from 'moment';
 import useStyles from './useStyles';
 import { useRequest } from '../../context/useBookingContext';
 
 const UpcomingBookings = (): JSX.Element => {
   const classes = useStyles();
-  const request = useRequest();
+  const { bookings } = useRequest();
 
   return (
-    <Card className={classes.upcomingBookings}>
+    <Paper elevation={0} className={classes.upcomingBookings}>
       <Typography className={classes.title} variant="h6" gutterBottom>
         Upcoming Bookings:
       </Typography>
-      {request.bookings.slice(1).map((booking, i) => (
-        <BookingCard key={i} bookingType="upcomings" start={booking.start} status={booking.status} />
+      {bookings.slice(1).map((booking) => (
+        <BookingCard
+          key={booking.requestId}
+          status={booking.status}
+          start={moment(booking.start).format('MMMM Do YYYY')}
+        />
       ))}
-    </Card>
+    </Paper>
   );
 };
 
