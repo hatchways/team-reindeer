@@ -7,9 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
 import { CircularProgress } from '@material-ui/core';
 import AuthFooter from '../../../components/AuthFooter/AuthFooter';
-import login from '../../../helpers/APICalls/login';
-import { useAuth } from '../../../context/useAuthContext';
-import { useSnackBar } from '../../../context/useSnackbarContext';
+import DemoUser from '../../DemoUser/DemoUser';
 
 interface Props {
   handleSubmit: (
@@ -32,29 +30,6 @@ interface Props {
 
 export default function Login({ handleSubmit }: Props): JSX.Element {
   const classes = useStyles();
-  const { updateLoginContext } = useAuth();
-  const { updateSnackBarMessage } = useSnackBar();
-
-  const handleClick = () => {
-    login('lukmanbioku@gmail.com', '1234567')
-      .then((data) => {
-        if (data.error) {
-          // setSubmitting(false);
-          updateSnackBarMessage(data.error.message);
-        } else if (data.success) {
-          updateLoginContext(data.success);
-        } else {
-          // should not get here from backend but this catch is for an unknown issue
-          console.error({ data });
-
-          // setSubmitting(false);
-          updateSnackBarMessage('An unexpected error occurred. Please try again');
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   return (
     <Formik
@@ -117,18 +92,7 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
             <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>
               {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'Login'}
             </Button>
-            <Button
-              type="button"
-              size="large"
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={() => {
-                handleClick();
-              }}
-            >
-              {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'Demo User'}
-            </Button>
+            <DemoUser />
           </Box>
           <AuthFooter linkTo="/signup" asideText="Not a member?" btnText="Sign Up" />
         </form>
