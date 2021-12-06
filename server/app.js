@@ -45,8 +45,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/", uploadRouter);
-app.use("/auth", authRouter);
+
+app.use('/', uploadRouter);
+app.use('/profile', profileRouter);
+app.use('/auth', authRouter);
 app.use("/users", userRouter);
 app.use("/request", requestRouter);
 
