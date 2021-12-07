@@ -20,7 +20,7 @@ const LoggedInBar = (): JSX.Element => {
         </Button>
       </Grid>
       <Grid item>
-        <Button component={Link} to="/my-jobs" color="secondary" size="large" variant="text">
+        <Button component={Link} to="/bookings" color="secondary" size="large" variant="text">
           <Typography className={pathname === '/' ? classes.homeTypography : classes.typography} variant="h3">
             My Jobs
           </Typography>

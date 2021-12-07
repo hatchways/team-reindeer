@@ -9,7 +9,9 @@ import EditMenu from './components/EditProfile/EditMenu';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
+import Bookings from './pages/Bookings/Bookings';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import { BookingProvider } from './context/useBookingContext';
 
 import './App.css';
 import Homepage from './pages/Home/Homepage';
@@ -21,20 +23,22 @@ function App(): JSX.Element {
         <SnackBarProvider>
           <AuthProvider>
             <SocketProvider>
-              <NavBar />
-              <Switch>
-                <Route exact path="/" component={Homepage} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/signup" component={Signup} />
-                <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-                <ProtectedRoute exact path="/my-jobs" component={Dashboard} />
-                <ProtectedRoute exact path="/messages" component={Dashboard} />
-                <ProtectedRoute exact path="/my-sitters" component={Dashboard} />
-                <ProtectedRoute exact path="/edit-profile" component={EditMenu} />
-                <Route path="*">
-                  <Redirect to="/" />
-                </Route>
-              </Switch>
+              <BookingProvider>
+                <NavBar />
+                <Switch>
+                  <Route exact path="/" component={Homepage} />
+                  <Route exact path="/login" component={Login} />
+                  <Route exact path="/signup" component={Signup} />
+                  <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+                  <ProtectedRoute exact path="/bookings" component={Bookings} />
+                  <ProtectedRoute exact path="/messages" component={Dashboard} />
+                  <ProtectedRoute exact path="/my-sitters" component={Dashboard} />
+                  <ProtectedRoute exact path="/edit-profile" component={EditMenu} />
+                  <Route path="*">
+                    <Redirect to="/" />
+                  </Route>
+                </Switch>
+              </BookingProvider>
             </SocketProvider>
           </AuthProvider>
         </SnackBarProvider>
