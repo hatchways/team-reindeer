@@ -2,7 +2,7 @@ import { useContext, createContext, FunctionComponent, useState, useEffect } fro
 import { Booking } from '../interface/Booking';
 import sortedBookings from '../helpers/utils/sortBookings';
 
-interface IBookingContext {
+interface BookingContext {
   bookings: Booking[];
 }
 
