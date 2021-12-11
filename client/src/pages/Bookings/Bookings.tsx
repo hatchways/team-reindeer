@@ -1,5 +1,5 @@
 import ManageBookings from '../../components/Bookings/ManageBookings';
-import BookingCalendar from '../../components/Bookings/BookingCalendar';
+import BookingCalendar from '../../components/Bookings/Calendar';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './useStyles';
 

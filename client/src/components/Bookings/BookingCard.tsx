@@ -4,33 +4,34 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import useStyles from './useStyles';
 import AvatarDisplay from '../AvatarDisplay/AvatarDisplay';
-import SettingsIcon from '@mui/icons-material/Settings';
+import { Booking } from '../../interface/Booking';
+import moment from 'moment';
+import BookingMenu from './BookingMenu';
 
 interface Props {
-  requestId?: string;
-  userId?: string;
-  start: string;
-  sitterId?: string;
-  status?: string;
+  booking: Booking;
+  component?: string;
 }
 
-const BookingCard = ({ start, status }: Props): JSX.Element => {
+const BookingCard = ({ booking, component }: Props): JSX.Element => {
   const classes = useStyles();
+  const { duration, status, _id, owner } = booking;
+  const startDate = moment(duration.start).format('MMMM Do YYYY, h:mm A');
   return (
     <Card className={classes.bookings}>
       <Box display="flex" justifyContent="space-between">
         <CardContent>
           <Typography className={classes.pos} variant="h3">
-            {start}
+            {startDate}
           </Typography>
         </CardContent>
-        <SettingsIcon fontSize="small" />
+        {component === 'pastBookings' ? '' : <BookingMenu status={status} id={_id} />}
       </Box>
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <Box display="flex" alignItems="center">
           <AvatarDisplay />
           <Typography className={classes.clientName} variant="h3" gutterBottom>
-            Name of Dog Owner
+            {owner.username}
           </Typography>
         </Box>
         <Typography className={classes.status} color="textSecondary" variant="h6" gutterBottom>

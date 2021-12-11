@@ -74,7 +74,7 @@ const updateRequest = async (req, res) => {
   }
   const confirmUser = await Request.findOne({ _id: newRequestData.id });
 
-  if (req.user.id != (confirmUser.owner || confirmUser.sitter)) {
+  if (req.user.id != confirmUser.sitter) {
     res.status(401);
     throw new Error("User Not authorized");
   }

@@ -7,8 +7,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     padding: theme.spacing(5),
     marginTop: theme.spacing(10),
-    height: 400,
-    overflow: 'auto',
   },
 
   bookings: {
