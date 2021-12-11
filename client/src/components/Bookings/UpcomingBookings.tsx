@@ -2,12 +2,11 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@mui/material/Paper';
 import BookingCard from './BookingCard';
 import useStyles from './useStyles';
-import { useRequest } from '../../context/useBookingContext';
+import useSortedBookings from './useSortedBookings';
 
 const UpcomingBookings = (): JSX.Element => {
   const classes = useStyles();
-  const { bookings } = useRequest();
-
+  const bookings = useSortedBookings();
   const upcomingBookings = bookings
     ? bookings.filter((booking) => new Date(booking.duration.start) > new Date()).slice(1)
     : null;
