@@ -35,9 +35,7 @@ export const updateBooking = async (bookingStatus: string, requestId: string): P
       const updatedBookingList = data.success.requests;
       return updatedBookingList;
     })
-    .catch(() => {
-      error: {
-        message: 'Unable to connect to server. Please try again';
-      }
+    .catch((error) => {
+      console.log(error.message);
     });
 };
