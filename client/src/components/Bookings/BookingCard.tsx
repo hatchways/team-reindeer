@@ -15,7 +15,8 @@ interface Props {
 
 const BookingCard = ({ booking, component }: Props): JSX.Element => {
   const classes = useStyles();
-  const { duration, status, _id, owner } = booking;
+  const { duration, status, _id, owner, sitter } = booking;
+
   const startDate = moment(duration.start).format('MMMM Do YYYY, h:mm A');
   return (
     <Card className={classes.bookings}>
@@ -25,7 +26,7 @@ const BookingCard = ({ booking, component }: Props): JSX.Element => {
             {startDate}
           </Typography>
         </CardContent>
-        {component === 'pastBookings' ? '' : <BookingMenu status={status} id={_id} />}
+        {component === 'pastBookings' ? null : <BookingMenu sitterId={sitter._id} status={status} id={_id} />}
       </Box>
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <Box display="flex" alignItems="center">
