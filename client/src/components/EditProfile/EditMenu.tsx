@@ -10,6 +10,7 @@ import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
 import { FormikHelpers } from 'formik';
 import editProfile from '../../helpers/APICalls/editProfile';
+import UploadPhoto from './ProfilePhoto/UploadPhoto';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -140,7 +141,7 @@ const EditMenu = (): JSX.Element => {
           <EditForm handleSubmit={handleSubmit} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Profile Photo Placeholder
+          <UploadPhoto />
         </TabPanel>
         <TabPanel value={value} index={2}>
           Availability Placeholder
