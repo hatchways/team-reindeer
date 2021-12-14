@@ -17,11 +17,7 @@ const NextBooking = (): JSX.Element => {
       <Typography className={classes.title} variant="h6" gutterBottom>
         Next Bookings:
       </Typography>
-      {nextBooking === null || nextBooking === undefined ? (
-        <Typography>You have no booking</Typography>
-      ) : (
-        <BookingCard booking={nextBooking} />
-      )}
+      {!nextBooking ? <Typography>You have no booking</Typography> : <BookingCard booking={nextBooking} />}
     </Paper>
   );
 };

@@ -2,12 +2,12 @@ import { useContext, createContext, FunctionComponent, useState, useEffect } fro
 import { Booking } from '../interface/Booking';
 import { fetchBookings, updateBooking } from '../helpers/APICalls/booking';
 
-interface IBookingContext {
+interface BookingContext {
   bookings: Booking[];
   updateBookings: (bookingStatus: string, requestId: string) => void;
 }
 
-export const BookingContext = createContext<IBookingContext>({
+export const BookingContext = createContext<BookingContext>({
   bookings: [],
   updateBookings: () => null,
 });
@@ -32,6 +32,6 @@ export const BookingProvider: FunctionComponent = ({ children }): JSX.Element =>
   return <BookingContext.Provider value={{ bookings, updateBookings }}>{children}</BookingContext.Provider>;
 };
 
-export function useRequest(): IBookingContext {
+export function useRequest(): BookingContext {
   return useContext(BookingContext);
 }
