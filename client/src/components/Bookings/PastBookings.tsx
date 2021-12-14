@@ -4,12 +4,13 @@ import BookingCard from './BookingCard';
 import useStyles from './useStyles';
 import { useRequest } from '../../context/useBookingContext';
 import moment from 'moment';
+import { Booking } from '../../interface/Booking';
 
 const UpcomingBookings = (): JSX.Element => {
   const classes = useStyles();
   const { bookings } = useRequest();
 
-  const pastBookings = bookings.filter((booking) => new Date(booking.start) < new Date());
+  const pastBookings = bookings.filter((booking: Booking) => new Date(booking.start) < new Date());
 
   return (
     <Paper elevation={0} className={classes.bookings}>
@@ -19,7 +20,7 @@ const UpcomingBookings = (): JSX.Element => {
       {!Boolean(pastBookings.length) ? (
         <Typography gutterBottom>You have no past bookings.</Typography>
       ) : (
-        pastBookings.map((booking) => (
+        pastBookings.map((booking: Booking) => (
           <BookingCard
             key={booking.requestId}
             start={moment(booking.start).format('MMMM Do YYYY')}

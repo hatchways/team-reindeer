@@ -6,7 +6,7 @@ interface BookingContext {
   bookings: Booking[];
 }
 
-export const BookingContext = createContext<IBookingContext>({
+export const BookingContext = createContext<BookingContext>({
   bookings: sortedBookings,
 });
 
@@ -20,6 +20,6 @@ export const BookingProvider: FunctionComponent = ({ children }): JSX.Element =>
   return <BookingContext.Provider value={{ bookings }}>{children}</BookingContext.Provider>;
 };
 
-export function useRequest(): IBookingContext {
+export function useRequest(): BookingContext {
   return useContext(BookingContext);
 }

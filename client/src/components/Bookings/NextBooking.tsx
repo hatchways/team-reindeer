@@ -5,12 +5,15 @@ import { useRequest } from '../../context/useBookingContext';
 import useStyles from './useStyles';
 import { assetNotNullOrUndefined } from '../../helpers/utils/assetNotNullOrUndefined';
 import moment from 'moment';
+import { Booking } from '../../interface/Booking';
 
 const NextBooking = (): JSX.Element => {
   const classes = useStyles();
   const { bookings } = useRequest();
 
-  const nextBooking = assetNotNullOrUndefined(bookings.find((booking) => booking.start.getTime() > Date.now()));
+  const nextBooking = assetNotNullOrUndefined(
+    bookings.find((booking: Booking) => booking.start.getTime() > Date.now()),
+  );
   const startDate = moment(nextBooking.start).format('MMMM Do YYYY');
 
   return (
