@@ -23,7 +23,6 @@ const requestSchema = new Schema({
     default: "pending",
   },
   completed: {
-    type: String,
     type: Boolean,
     default: false,
   },
