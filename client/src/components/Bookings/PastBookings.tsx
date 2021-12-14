@@ -15,7 +15,7 @@ const PastBookings = (): JSX.Element => {
         Past Bookings:
       </Typography>
       {pastBookings ? (
-        pastBookings.map((booking) => <BookingCard key={booking._id} booking={booking} component="pastBookings" />)
+        pastBookings.map((booking) => <BookingCard key={booking._id} booking={booking} type="pastBookings" />)
       ) : (
         <Typography gutterBottom>You have no past bookings.</Typography>
       )}

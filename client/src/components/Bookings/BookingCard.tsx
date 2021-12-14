@@ -10,10 +10,10 @@ import BookingMenu from './BookingMenu';
 
 interface Props {
   booking: Booking;
-  component?: string;
+  type?: string;
 }
 
-const BookingCard = ({ booking, component }: Props): JSX.Element => {
+const BookingCard = ({ booking, type }: Props): JSX.Element => {
   const classes = useStyles();
   const { duration, status, _id, owner, sitter } = booking;
 
@@ -26,7 +26,7 @@ const BookingCard = ({ booking, component }: Props): JSX.Element => {
             {startDate}
           </Typography>
         </CardContent>
-        {component === 'pastBookings' ? null : <BookingMenu sitterId={sitter._id} status={status} id={_id} />}
+        {type === 'pastBookings' ? null : <BookingMenu sitterId={sitter._id} status={status} id={_id} />}
       </Box>
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <Box display="flex" alignItems="center">
