@@ -18,12 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const UploadPhoto = (): JSX.Element => {
-  const [file, setFile] = useState(null);
+  const [fileInputState, setFileInputState] = useState('');
   const classes = useStyles();
 
-  const handleChange = (files: any) => {
-    // setFile(files[0]);
-    console.log(files[0]);
+  const handleChange = (e: any) => {
+    const file = e.target.files[0];
   };
 
   return (
@@ -37,7 +36,8 @@ const UploadPhoto = (): JSX.Element => {
               id="contained-button-file"
               multiple
               type="file"
-              onChange={(e) => handleChange(e.target.files)}
+              value={fileInputState}
+              onChange={handleChange}
             />
             <label htmlFor="contained-button-file">
               <Button variant="contained" size="large" color="primary" component="span">
