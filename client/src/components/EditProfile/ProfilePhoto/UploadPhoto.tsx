@@ -20,8 +20,10 @@ const useStyles = makeStyles((theme: Theme) =>
 const UploadPhoto = (): JSX.Element => {
   const classes = useStyles();
 
-  const handleChange = (files: any) => {
-    console.log(files[0]);
+  const uploadImage = (files: any) => {
+    // console.log(files[0]);
+    const formData = new FormData();
+    formData.append('file', files[0]);
   };
 
   return (
@@ -36,11 +38,11 @@ const UploadPhoto = (): JSX.Element => {
               multiple
               type="file"
               onChange={(e) => {
-                handleChange(e.target.files);
+                uploadImage(e.target.files);
               }}
             />
             <label htmlFor="contained-button-file">
-              <Button variant="contained" size="large" color="primary" component="span">
+              <Button variant="contained" size="large" color="primary" component="span" onClick={uploadImage}>
                 Upload
               </Button>
             </label>
