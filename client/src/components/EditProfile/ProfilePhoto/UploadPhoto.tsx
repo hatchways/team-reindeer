@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Box } from '@material-ui/core';
@@ -18,12 +18,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const UploadPhoto = (): JSX.Element => {
+  const [file, setFile] = useState(null);
   const classes = useStyles();
 
-  const uploadImage = (files: any) => {
-    // console.log(files[0]);
-    const formData = new FormData();
-    formData.append('file', files[0]);
+  const handleChange = (files: any) => {
+    // setFile(files[0]);
+    console.log(files[0]);
   };
 
   return (
@@ -37,12 +37,10 @@ const UploadPhoto = (): JSX.Element => {
               id="contained-button-file"
               multiple
               type="file"
-              onChange={(e) => {
-                uploadImage(e.target.files);
-              }}
+              onChange={(e) => handleChange(e.target.files)}
             />
             <label htmlFor="contained-button-file">
-              <Button variant="contained" size="large" color="primary" component="span" onClick={uploadImage}>
+              <Button variant="contained" size="large" color="primary" component="span">
                 Upload
               </Button>
             </label>
