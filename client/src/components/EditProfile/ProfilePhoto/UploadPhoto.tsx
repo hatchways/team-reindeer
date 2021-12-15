@@ -37,7 +37,7 @@ const UploadPhoto: React.FC = (): JSX.Element => {
             <Avatar className={classes.avatar} />
           )}
           <Typography variant="subtitle1" className={classes.typography}>
-            Be sure to use a photo that clearly show your face
+            Be sure to use a photo that clearly shows your face
           </Typography>
           <Button variant="outlined" size="large" color="primary" component="span" className={classes.button}>
             Upload a file from your device
