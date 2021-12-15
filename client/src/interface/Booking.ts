@@ -12,3 +12,8 @@ export interface Booking {
   paid?: boolean;
   status: string;
 }
+
+export interface BookingApiData {
+  error?: { message: string };
+  success?: Booking[];
+}

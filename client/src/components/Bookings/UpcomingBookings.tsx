@@ -2,14 +2,13 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@mui/material/Paper';
 import BookingCard from './BookingCard';
 import useStyles from './useStyles';
-import useSortedBookings from './useSortedBookings';
+import { Booking } from '../../interface/Booking';
 
-const UpcomingBookings = (): JSX.Element => {
+interface Props {
+  upcomingBookings: Booking[] | null | undefined;
+}
+const UpcomingBookings = ({ upcomingBookings }: Props): JSX.Element => {
   const classes = useStyles();
-  const bookings = useSortedBookings();
-  const upcomingBookings = bookings
-    ? bookings.filter((booking) => new Date(booking.duration.start) > new Date()).slice(1)
-    : null;
 
   return (
     <Paper elevation={0} className={classes.upcomingBookings}>
@@ -17,7 +16,7 @@ const UpcomingBookings = (): JSX.Element => {
         Upcoming Bookings:
       </Typography>
       {upcomingBookings ? (
-        upcomingBookings.map((booking) => <BookingCard key={booking._id} booking={booking} />)
+        upcomingBookings.map((booking: Booking) => <BookingCard key={booking._id} booking={booking} />)
       ) : (
         <Typography gutterBottom>You have no past bookings.</Typography>
       )}

@@ -12,12 +12,14 @@ const getRequests = async (req, res) => {
   })
     .populate("sitter", ["username", "email", "_id"])
     .populate("owner", ["username", "email", "_id"]);
-
-  res.status(200).json({
-    success: {
-      requests: requests,
-    },
-  });
+  if (requests) {
+    res.status(200).json({
+      success: requests,
+    });
+  } else {
+    res.status(500);
+    throw new Error("Something went wrong!!");
+  }
 };
 
 // @desc  POST : Create a new request
@@ -49,9 +51,7 @@ const createRequest = async (req, res) => {
 
   if (request) {
     res.status(200).json({
-      success: {
-        request: request,
-      },
+      success: request,
     });
   } else {
     res.status(500);
@@ -79,7 +79,7 @@ const updateRequest = async (req, res) => {
     throw new Error("User Not authorized");
   }
   const updatedRequest = await Request.findOneAndUpdate(
-    { _id: newRequestData.id },
+    { _id: confirmUser._id },
     newRequestData,
     { new: true }
   );
@@ -91,12 +91,9 @@ const updateRequest = async (req, res) => {
       .populate("owner", ["username", "email", "_id"]);
 
     res.status(200).json({
-      success: {
-        requests: requests,
-      },
+      success: requests,
     });
   } else {
-    res.status(500);
     throw new Error("Something went wrong!!");
   }
 };

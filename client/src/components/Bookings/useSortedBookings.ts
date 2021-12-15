@@ -1,7 +1,7 @@
 import { useRequest } from '../../context/useBookingContext';
-import { Booking } from '../../interface/Booking';
+import { Booking, BookingApiData } from '../../interface/Booking';
 
-const useSortedBookings = (): Booking[] => {
+const useSortedBookings = (): BookingApiData['success'] => {
   const { bookings } = useRequest();
   const sortedBookings =
     bookings &&
