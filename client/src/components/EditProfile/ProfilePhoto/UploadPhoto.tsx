@@ -9,13 +9,16 @@ const useStyles = makeStyles((theme: Theme) =>
       '& > *': {
         margin: theme.spacing(1),
       },
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     input: {
       display: 'none',
     },
     avatar: {
       width: '300px',
-      height: '300px',
+      height: '320px',
     },
     button: {
       marginLeft: '100px',
