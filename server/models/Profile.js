@@ -15,6 +15,14 @@ const profileSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  gender: {
+    type: String,
+    default: "",
+  },
+  email: {
+    type: String,
+    default: "",
+  },
   address: {
     type: String,
     default: "",
@@ -25,11 +33,11 @@ const profileSchema = new mongoose.Schema({
   },
   dateOfBirth: {
     type: Date,
-    default: null
+    default: null,
   },
   availability: {
     type: [Date],
-    default: []
+    default: [],
   },
   photo: {
     type: String,
