@@ -1,5 +1,5 @@
 import ManageBookings from '../../components/Bookings/ManageBookings';
-import BookingCalendar from '../../components/Bookings/BookingCalendar';
+import Calendar from '../../components/Bookings/Calendar';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './useStyles';
 
@@ -11,7 +11,7 @@ const Bookings = (): JSX.Element => {
         <ManageBookings />
       </Grid>
       <Grid item xs={12} md={6} className={classes.bookingCalendar}>
-        <BookingCalendar />
+        <Calendar />
       </Grid>
     </Grid>
   );

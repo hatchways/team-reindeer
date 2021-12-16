@@ -1,4 +1,5 @@
 const Request = require("../models/Request");
+const User = require("../models/User");
 const express = require("express");
 const router = express.Router();
 
@@ -7,35 +8,94 @@ const router = express.Router();
 
 const getRequests = async (req, res) => {
   const requests = await Request.find({
-    $or: [{ userId: req.user.id }, { sitterId: req.user.id }],
-  });
-  res.json(requests);
+    $or: [{ owner: req.user.id }, { sitter: req.user.id }],
+  })
+    .populate("sitter", ["username", "email", "_id"])
+    .populate("owner", ["username", "email", "_id"]);
+  if (requests) {
+    res.status(200).json({
+      success: requests,
+    });
+  } else {
+    res.status(500);
+    throw new Error("Something went wrong!!");
+  }
 };
 
 // @desc  POST : Create a new request
 // @route POST
 
 const createRequest = async (req, res) => {
-  const { sitterId, start, end } = req.body;
-  const userId = req.user.id;
-  const request = await Request.create({ userId, sitterId, start, end });
-  res.send(request);
+  const body = req.body;
+  if (!(body || body.sitter || body.owner || body.duration)) {
+    res.status(400);
+    throw new Error("Bad Request");
+  }
+  const sitter = await User.findById(body.sitter);
+  if (!sitter) {
+    res.status(404);
+    throw new Error("Sitter not Found");
+  }
+  if (Date.parse(body.duration.end) < Date.parse(body.duration.start)) {
+    res.status(400);
+    throw new Error("End Date must greater than Start Date");
+  }
+  const request = await Request.create({
+    owner: req.user.id,
+    sitter: body.sitter,
+    duration: {
+      start: new Date(body.duration.start),
+      end: new Date(body.duration.end),
+    },
+  });
+
+  if (request) {
+    res.status(200).json({
+      success: request,
+    });
+  } else {
+    res.status(500);
+    throw new Error("Something went wrong!!");
+  }
 };
 
 // @desc UPDATE : Update request with approved or decline
 // @route PATCH
 
 const updateRequest = async (req, res) => {
-  const { status } = req.body;
-  const userId = req.user.id;
-  const request = await Request.findOneAndUpdate(
-    { _id: req.params.id, sitterId: userId },
-    { $set: { status: status } },
-    {
-      new: true,
-    }
+  const bodyData = ({ duration, totalCost, status, completed } = req.body);
+  const newRequestData = {
+    ...req.params,
+    ...bodyData,
+  };
+  if (!(newRequestData || newRequestData.id)) {
+    res.status(400);
+    throw new Error("Bad Request");
+  }
+  const confirmUser = await Request.findOne({ _id: newRequestData.id });
+
+  if (req.user.id != confirmUser.sitter) {
+    res.status(401);
+    throw new Error("User Not authorized");
+  }
+  const updatedRequest = await Request.findOneAndUpdate(
+    { _id: confirmUser._id },
+    newRequestData,
+    { new: true }
   );
-  res.json(request);
+  if (updatedRequest) {
+    const requests = await Request.find({
+      $or: [{ owner: req.user.id }, { sitter: req.user.id }],
+    })
+      .populate("sitter", ["username", "email", "_id"])
+      .populate("owner", ["username", "email", "_id"]);
+
+    res.status(200).json({
+      success: requests,
+    });
+  } else {
+    throw new Error("Something went wrong!!");
+  }
 };
 
 module.exports = { createRequest, getRequests, updateRequest };
