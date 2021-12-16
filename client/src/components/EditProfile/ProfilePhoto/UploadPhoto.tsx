@@ -41,12 +41,9 @@ const UploadPhoto: React.FC = (): JSX.Element => {
             Upload a file from your device
           </Button>
         </label>
-        <Box>
-          <IconButton aria-label="delete" className={classes.iconButton}>
-            <DeleteIcon fontSize="large" />
-            <Typography variant="subtitle1">Delete photo</Typography>
-          </IconButton>
-        </Box>
+        <Button variant="contained" color="primary" className={classes.button} startIcon={<DeleteIcon />}>
+          Delete photo
+        </Button>
       </form>
     </Box>
   );
