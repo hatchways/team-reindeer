@@ -15,6 +15,8 @@ const UploadPhoto: React.FC = (): JSX.Element => {
     }
   };
 
+  const avatarSrc = selectedImage && URL.createObjectURL(selectedImage);
+
   return (
     <Box className={classes.root}>
       <form>
@@ -24,18 +26,14 @@ const UploadPhoto: React.FC = (): JSX.Element => {
         <input
           accept="image/*"
           className={classes.input}
-          id="contained-button-file"
+          id="outlined-button-file"
           multiple
           type="file"
           onChange={imageChange}
           required
         />
         <label htmlFor="outlined-button-file">
-          {selectedImage ? (
-            <Avatar src={URL.createObjectURL(selectedImage)} alt="Thumb" className={classes.avatar} />
-          ) : (
-            <Avatar className={classes.avatar} />
-          )}
+          <Avatar src={avatarSrc} alt="Profile photo/avatar/thumbnail" className={classes.avatar} />
           <Typography variant="subtitle1" className={classes.typography}>
             Be sure to use a photo that clearly shows your face
           </Typography>
