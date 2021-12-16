@@ -15,8 +15,8 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'none',
     },
     avatar: {
-      width: '300px',
-      height: '320px',
+      width: '10rem',
+      height: '10rem',
     },
     button: {
       marginLeft: '30px',
