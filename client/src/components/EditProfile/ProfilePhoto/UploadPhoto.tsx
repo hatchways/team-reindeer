@@ -26,13 +26,13 @@ const UploadPhoto: React.FC = (): JSX.Element => {
         <input
           accept="image/*"
           className={classes.input}
-          id="outlined-button-file"
+          id="button"
           multiple
           type="file"
           onChange={imageChange}
           required
         />
-        <label htmlFor="outlined-button-file">
+        <label htmlFor="button">
           <Avatar src={avatarSrc} alt="Profile photo/avatar/thumbnail" className={classes.avatar} />
           <Typography variant="subtitle1" className={classes.typography}>
             Be sure to use a photo that clearly shows your face
