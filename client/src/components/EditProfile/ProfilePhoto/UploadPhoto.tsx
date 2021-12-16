@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Avatar, Box, IconButton, Typography, Button } from '@material-ui/core';
+import { Avatar, Box, Typography, Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import useStyles from './useStyles';
@@ -31,7 +31,7 @@ const UploadPhoto: React.FC = (): JSX.Element => {
         onChange={imageChange}
         required
       />
-      <Avatar src={avatarSrc} alt="Profile photo/avatar/thumbnail" className={classes.avatar} />
+      <Avatar src={avatarSrc} alt="Profile photo" className={classes.avatar} />
       <Typography variant="subtitle1" className={classes.typography}>
         Be sure to use a photo that clearly shows your face
       </Typography>
