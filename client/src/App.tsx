@@ -23,7 +23,6 @@ function App(): JSX.Element {
         <SnackBarProvider>
           <AuthProvider>
             <SocketProvider>
-
               <NavBar />
               <Switch>
                 <Route exact path="/" component={Homepage} />
