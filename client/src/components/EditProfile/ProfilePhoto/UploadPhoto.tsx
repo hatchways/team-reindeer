@@ -32,21 +32,21 @@ const UploadPhoto: React.FC = (): JSX.Element => {
           onChange={imageChange}
           required
         />
+        <Avatar src={avatarSrc} alt="Profile photo/avatar/thumbnail" className={classes.avatar} />
+        <Typography variant="subtitle1" className={classes.typography}>
+          Be sure to use a photo that clearly shows your face
+        </Typography>
         <label htmlFor="button">
-          <Avatar src={avatarSrc} alt="Profile photo/avatar/thumbnail" className={classes.avatar} />
-          <Typography variant="subtitle1" className={classes.typography}>
-            Be sure to use a photo that clearly shows your face
-          </Typography>
           <Button variant="outlined" size="large" color="primary" component="span" className={classes.button}>
             Upload a file from your device
           </Button>
-          <Box>
-            <IconButton aria-label="delete" className={classes.iconButton}>
-              <DeleteIcon fontSize="large" />
-              <Typography variant="subtitle1">Delete photo</Typography>
-            </IconButton>
-          </Box>
         </label>
+        <Box>
+          <IconButton aria-label="delete" className={classes.iconButton}>
+            <DeleteIcon fontSize="large" />
+            <Typography variant="subtitle1">Delete photo</Typography>
+          </IconButton>
+        </Box>
       </form>
     </Box>
   );
