@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      '& .MuiButton-label': {
+        textTransform: 'none',
+      },
     },
     input: {
       display: 'none',
