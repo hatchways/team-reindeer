@@ -9,6 +9,14 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  listing: {
+    marginTop: theme.spacing(10),
+    display: 'flex',
+    flexWrap: 'wrap',
+    width: '80%',
+    padding: theme.spacing(5),
+    justifyContent: 'center',
+  },
 }));
 
 export default useStyles;
