@@ -1,5 +1,6 @@
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import useStyles from './useStyles';
 import SearchBar from '../../components/Dashboard/SearchBar/SearchBar';
 import Listing from '../../components/Dashboard/Listing/Listing';
@@ -27,6 +28,9 @@ export default function Dashboard(): JSX.Element {
             />
           ))}
       </Grid>
+      <Button color="primary" size="large" variant="outlined">
+        Show More
+      </Button>
     </Grid>
   );
 }
