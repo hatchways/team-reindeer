@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const timeSlot = new mongoose.Schema({ start: Date, end: Date });
 
 const profileSchema = new mongoose.Schema({
-  
   firstName: {
     type: String,
     default: "",
@@ -47,7 +46,7 @@ const profileSchema = new mongoose.Schema({
   sitter: {
     type: Boolean,
     default: false,
-  }
+  },
   payrate: {
     type: Number,
     default: null,
