@@ -2,8 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minHeight: '100vh',
-    marginTop: theme.spacing(70),
+    margin: theme.spacing(70, 0, 25, 0),
   },
   dashboard: {
     flexDirection: 'column',
