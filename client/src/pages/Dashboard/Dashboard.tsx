@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import useStyles from './useStyles';
 import SearchBar from '../../components/Dashboard/SearchBar/SearchBar';
 import Listing from '../../components/Dashboard/Listing/Listing';
-import { mockData } from './mockData';
+import { mockData } from '../../mocks/mockData';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
@@ -20,15 +20,14 @@ export default function Dashboard(): JSX.Element {
               key={listing.id}
               username={listing.username}
               description={listing.description}
-              profession={listing.profession}
               photo={listing.photo}
               rating={listing.rating}
               location={listing.location}
-              rate={listing.rate}
+              price={listing.price}
             />
           ))}
       </Grid>
-      <Button color="primary" size="large" variant="outlined">
+      <Button size="large" variant="outlined">
         Show More
       </Button>
     </Grid>
