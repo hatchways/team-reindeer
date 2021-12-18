@@ -38,7 +38,14 @@ const UploadPhoto: React.FC = (): JSX.Element => {
         Be sure to use a photo that clearly shows your face
       </Typography>
       <label htmlFor="button">
-        <Button variant="outlined" size="large" color="primary" component="span" className={classes.button}>
+        <Button
+          variant="outlined"
+          size="large"
+          color="primary"
+          component="span"
+          className={classes.button}
+          onClick={uploadImage}
+        >
           Upload a file from your device
         </Button>
       </label>
