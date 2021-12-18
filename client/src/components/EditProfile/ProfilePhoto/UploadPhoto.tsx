@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import { Avatar, Box, Typography, Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -14,6 +14,8 @@ const UploadPhoto: React.FC = (): JSX.Element => {
       setSelectedImage(e.target.files[0]);
     }
   };
+
+  const uploadImage = (e: MouseEvent<HTMLButtonElement>) => {};
 
   const avatarSrc = selectedImage && URL.createObjectURL(selectedImage);
 
