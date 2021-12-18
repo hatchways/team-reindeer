@@ -15,7 +15,9 @@ const UploadPhoto: React.FC = (): JSX.Element => {
     }
   };
 
-  const uploadImage = (e: MouseEvent<HTMLButtonElement>) => {};
+  const uploadImage = (e: MouseEvent<HTMLButtonElement>) => {
+    const formData = new FormData();
+  };
 
   const avatarSrc = selectedImage && URL.createObjectURL(selectedImage);
 
