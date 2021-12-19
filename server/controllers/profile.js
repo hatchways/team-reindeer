@@ -12,7 +12,7 @@ exports.editProfile = asyncHandler(async (req, res, next) => {
     res.status(404);
     throw new Error("User doesn't exist");
   }
-
+  console.log(user);
   const profile = await Profile.findByIdAndUpdate(user.profile, req.body, {
     new: true,
   });
@@ -29,6 +29,24 @@ exports.editProfile = asyncHandler(async (req, res, next) => {
 // @access Private
 exports.loadProfile = asyncHandler(async (req, res, next) => {
   const profile = await User.findById(req.user.id, "profile");
+
+  if (!profile) {
+    res.status(401);
+    throw new Error("Not authorized");
+  }
+
+  res.status(200).json({
+    success: {
+      profile: profile,
+    },
+  });
+});
+
+// @route GET /profile/listing
+// @desc Get sitter profile data
+// @access Private
+exports.loadSitters = asyncHandler(async (req, res, next) => {
+  const profile = await Profile.find({ sitter: true });
 
   if (!profile) {
     res.status(401);

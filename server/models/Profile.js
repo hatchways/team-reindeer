@@ -47,7 +47,7 @@ const profileSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  payrate: {
+  price: {
     type: Number,
     default: null,
   },
