@@ -49,7 +49,7 @@ const profileSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    default: null,
+    default: 0,
   },
 });
 

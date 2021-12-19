@@ -54,8 +54,6 @@ exports.loadSitters = asyncHandler(async (req, res, next) => {
   }
 
   res.status(200).json({
-    success: {
-      profile: profile,
-    },
+    success: profile,
   });
 });

@@ -4,26 +4,27 @@ import Button from '@material-ui/core/Button';
 import useStyles from './useStyles';
 import SearchBar from '../../components/Dashboard/SearchBar/SearchBar';
 import Listing from '../../components/Dashboard/Listing/Listing';
-import { mockData } from '../../mocks/mockData';
+import { useProfile } from '../../context/useProfileContext';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
-
+  const { sitters } = useProfile();
+  console.log(sitters);
   return (
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <Typography variant="h4">Your Search Results</Typography>
       <SearchBar />
       <Grid className={classes.listing}>
-        {mockData &&
-          mockData.map((listing) => (
+        {sitters &&
+          sitters.map((sitter) => (
             <Listing
-              key={listing.id}
-              username={listing.username}
-              description={listing.description}
-              photo={listing.photo}
-              rating={listing.rating}
-              location={listing.location}
-              price={listing.price}
+              key={sitter._id}
+              firstName={sitter.firstName}
+              lastName={sitter.lastName}
+              description={sitter.description}
+              photo={sitter.photo}
+              address={sitter.address}
+              price={sitter.price}
             />
           ))}
       </Grid>
