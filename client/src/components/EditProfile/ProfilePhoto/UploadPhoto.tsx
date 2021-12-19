@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { Avatar, Box, Typography, Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -9,14 +9,10 @@ const UploadPhoto: React.FC = (): JSX.Element => {
 
   const [selectedImage, setSelectedImage] = useState<File>();
 
-  const imageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedImage(e.target.files[0]);
     }
-  };
-
-  const uploadImage = (e: MouseEvent<HTMLButtonElement>) => {
-    const formData = new FormData();
   };
 
   const avatarSrc = selectedImage && URL.createObjectURL(selectedImage);
@@ -32,7 +28,7 @@ const UploadPhoto: React.FC = (): JSX.Element => {
         id="button"
         multiple
         type="file"
-        onChange={imageChange}
+        onChange={handleImageChange}
         required
       />
       <Avatar src={avatarSrc} alt="Profile photo" className={classes.avatar} />
@@ -40,14 +36,7 @@ const UploadPhoto: React.FC = (): JSX.Element => {
         Be sure to use a photo that clearly shows your face
       </Typography>
       <label htmlFor="button">
-        <Button
-          variant="outlined"
-          size="large"
-          color="primary"
-          component="span"
-          className={classes.button}
-          onClick={uploadImage}
-        >
+        <Button variant="outlined" size="large" color="primary" component="span" className={classes.button}>
           Upload a file from your device
         </Button>
       </label>
