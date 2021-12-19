@@ -16,11 +16,21 @@ const UploadPhoto: React.FC = (): JSX.Element => {
     }
   };
 
-  const uploadImage = () => {
+  const uploadImage = async () => {
     if (selectedImage) {
       const formData = new FormData();
       formData.append('file', selectedImage);
       formData.append('upload_preset', 'team-reindeer');
+
+      try {
+        await fetch('/upload-images', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
