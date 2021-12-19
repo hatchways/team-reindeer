@@ -10,8 +10,9 @@ const UploadPhoto: React.FC = (): JSX.Element => {
   const [selectedImage, setSelectedImage] = useState<File>();
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setSelectedImage(e.target.files[0]);
+    const fileList = e.target.files;
+    if (fileList && fileList.length > 0) {
+      setSelectedImage(fileList[0]);
     }
   };
 
