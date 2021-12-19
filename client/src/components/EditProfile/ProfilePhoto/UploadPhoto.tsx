@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import { Avatar, Box, Typography, Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -13,6 +13,13 @@ const UploadPhoto: React.FC = (): JSX.Element => {
     const fileList = e.target.files;
     if (fileList && fileList.length > 0) {
       setSelectedImage(fileList[0]);
+    }
+  };
+
+  const uploadImage = function () {
+    if (selectedImage) {
+      const formData = new FormData();
+      formData.append('file', selectedImage);
     }
   };
 
@@ -37,7 +44,14 @@ const UploadPhoto: React.FC = (): JSX.Element => {
         Be sure to use a photo that clearly shows your face
       </Typography>
       <label htmlFor="button">
-        <Button variant="outlined" size="large" color="primary" component="span" className={classes.button}>
+        <Button
+          variant="outlined"
+          size="large"
+          color="primary"
+          component="span"
+          className={classes.button}
+          onClick={uploadImage}
+        >
           Upload a file from your device
         </Button>
       </label>
