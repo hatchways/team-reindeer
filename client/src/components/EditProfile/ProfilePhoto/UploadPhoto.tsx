@@ -16,7 +16,7 @@ const UploadPhoto: React.FC = (): JSX.Element => {
     }
   };
 
-  const uploadImage = function () {
+  const uploadImage = () => {
     if (selectedImage) {
       const formData = new FormData();
       formData.append('file', selectedImage);
