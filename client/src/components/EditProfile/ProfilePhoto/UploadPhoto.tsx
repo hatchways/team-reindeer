@@ -20,6 +20,7 @@ const UploadPhoto: React.FC = (): JSX.Element => {
     if (selectedImage) {
       const formData = new FormData();
       formData.append('file', selectedImage);
+      formData.append('upload_preset', 'team-reindeer');
     }
   };
 
