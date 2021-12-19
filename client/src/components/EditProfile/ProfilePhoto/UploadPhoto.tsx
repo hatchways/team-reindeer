@@ -7,7 +7,7 @@ import useStyles from './useStyles';
 const UploadPhoto: React.FC = (): JSX.Element => {
   const classes = useStyles();
 
-  const [selectedImage, setSelectedImage] = useState<File>();
+  const [selectedImage, setSelectedImage] = useState<File | undefined>();
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const fileList = e.target.files;
