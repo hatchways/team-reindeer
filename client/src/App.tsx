@@ -12,6 +12,7 @@ import { SnackBarProvider } from './context/useSnackbarContext';
 import Bookings from './pages/Bookings/Bookings';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import { BookingProvider } from './context/useBookingContext';
+import { ProfileProvider } from './context/useProfileContext';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import './App.css';
@@ -24,24 +25,26 @@ function App(): JSX.Element {
         <SnackBarProvider>
           <AuthProvider>
             <SocketProvider>
-              <NavBar />
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <Switch>
-                  <Route exact path="/" component={Homepage} />
-                  <Route exact path="/login" component={Login} />
-                  <Route exact path="/signup" component={Signup} />
-                  <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-                  <BookingProvider>
-                    <ProtectedRoute exact path="/bookings" component={Bookings} />
-                  </BookingProvider>
-                  <ProtectedRoute exact path="/messages" component={Dashboard} />
-                  <ProtectedRoute exact path="/my-sitters" component={Dashboard} />
-                  <ProtectedRoute exact path="/edit-profile" component={EditMenu} />
-                  <Route path="*">
-                    <Redirect to="/" />
-                  </Route>
-                </Switch>
-              </LocalizationProvider>
+              <BookingProvider>
+                <ProfileProvider>
+                  <NavBar />
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <Switch>
+                      <Route exact path="/" component={Homepage} />
+                      <Route exact path="/login" component={Login} />
+                      <Route exact path="/signup" component={Signup} />
+                      <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+                      <ProtectedRoute exact path="/bookings" component={Bookings} />
+                      <ProtectedRoute exact path="/messages" component={Dashboard} />
+                      <ProtectedRoute exact path="/my-sitters" component={Dashboard} />
+                      <ProtectedRoute exact path="/edit-profile" component={EditMenu} />
+                      <Route path="*">
+                        <Redirect to="/" />
+                      </Route>
+                    </Switch>
+                  </LocalizationProvider>
+                </ProfileProvider>
+              </BookingProvider>
             </SocketProvider>
           </AuthProvider>
         </SnackBarProvider>
