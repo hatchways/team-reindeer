@@ -22,11 +22,11 @@ const Listing = ({ username, description, photo, rating, price, location }: Prop
   const classes = useStyles();
   return (
     <Card sx={{ width: 250, maxWidth: 350, minHeight: 250 }} className={classes.profile}>
-      <CardContent className={classes.profileInfo1}>
+      <CardContent className={classes.profileInfo1} sx={{ padding: '10px 30px' }}>
         <Avatar sx={{ width: 100, height: 100 }} alt="sitter photo" src={photo} />
         <Typography variant="h5">{username}</Typography>
         <Rating name="read-only" value={rating} readOnly />
-        <Typography variant="body2">{description}</Typography>
+        <Typography variant="subtitle2">{description}</Typography>
       </CardContent>
       <Divider />
       <CardContent className={classes.profileInfo2}>
