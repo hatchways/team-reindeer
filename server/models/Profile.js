@@ -43,6 +43,14 @@ const profileSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  sitter: {
+    type: Boolean,
+    default: false,
+  },
+  price: {
+    type: Number,
+    default: 0,
+  },
 });
 
 module.exports = Profile = mongoose.model("Profile", profileSchema);
