@@ -47,7 +47,6 @@ exports.loadProfile = asyncHandler(async (req, res, next) => {
 // @access Private
 exports.loadSitters = asyncHandler(async (req, res, next) => {
   const profile = await Profile.find({ sitter: true });
-
   if (!profile) {
     res.status(401);
     throw new Error("Not authorized");
