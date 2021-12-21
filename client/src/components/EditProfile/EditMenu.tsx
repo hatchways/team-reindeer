@@ -6,7 +6,6 @@ import Tab from '@material-ui/core/Tab';
 import Paper from '@material-ui/core/Paper';
 import { useState, ChangeEvent } from 'react';
 import EditForm from './EditForm/EditForm';
-import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
 import { FormikHelpers } from 'formik';
 import editProfile from '../../helpers/APICalls/editProfile';
@@ -43,7 +42,6 @@ function a11yProps(index: number) {
 
 const EditMenu = (): JSX.Element => {
   const classes = useStyles();
-  const { updateLoginContext } = useAuth();
   const { updateSnackBarMessage } = useSnackBar();
   const [value, setValue] = useState(0);
 
@@ -107,7 +105,7 @@ const EditMenu = (): JSX.Element => {
         setSubmitting(false);
         updateSnackBarMessage(data.error.message);
       } else if (data.success) {
-        updateLoginContext(data.success);
+        updateSnackBarMessage('Profile updated successfully');
       } else {
         // should not get here from backend but this catch is for an unknown issue
         console.error({ data });

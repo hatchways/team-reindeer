@@ -87,7 +87,7 @@ const EditForm = ({ handleSubmit }: Props): JSX.Element => {
           <Form onSubmit={handleSubmit}>
             <Grid container alignItems="center" spacing={2}>
               <Grid item xs={12}>
-                <Typography variant="h6" align="center">
+                <Typography variant="h5" align="center">
                   Edit Profile
                 </Typography>
               </Grid>

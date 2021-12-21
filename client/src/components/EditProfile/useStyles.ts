@@ -8,9 +8,11 @@ const useStyles = makeStyles((theme) => ({
     },
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: theme.spacing(70),
   },
   tabContainer: {
     flexGrow: 1,
+
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -22,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     borderColor: 'divider',
   },
   tabComponents: {
-    marginTop: theme.spacing(15),
     flexGrow: 2,
   },
 }));
