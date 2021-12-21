@@ -35,8 +35,21 @@ const profileSchema = new mongoose.Schema({
     type: Date,
     default: null,
   },
+  available: {
+    type: Boolean,
+    default: false,
+  },
   availability: {
-    type: [Date],
+    type: Array,
+    enum: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thrusday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
     default: [],
   },
   photo: {
