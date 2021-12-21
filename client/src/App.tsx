@@ -24,24 +24,24 @@ function App(): JSX.Element {
         <SnackBarProvider>
           <AuthProvider>
             <SocketProvider>
-              <NavBar />
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <Switch>
-                  <Route exact path="/" component={Homepage} />
-                  <Route exact path="/login" component={Login} />
-                  <Route exact path="/signup" component={Signup} />
-                  <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-                  <BookingProvider>
+              <BookingProvider>
+                <NavBar />
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <Switch>
+                    <Route exact path="/" component={Homepage} />
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/signup" component={Signup} />
+                    <ProtectedRoute exact path="/dashboard" component={Dashboard} />
                     <ProtectedRoute exact path="/bookings" component={Bookings} />
-                  </BookingProvider>
-                  <ProtectedRoute exact path="/messages" component={Dashboard} />
-                  <ProtectedRoute exact path="/my-sitters" component={Dashboard} />
-                  <ProtectedRoute exact path="/edit-profile" component={EditMenu} />
-                  <Route path="*">
-                    <Redirect to="/" />
-                  </Route>
-                </Switch>
-              </LocalizationProvider>
+                    <ProtectedRoute exact path="/messages" component={Dashboard} />
+                    <ProtectedRoute exact path="/my-sitters" component={Dashboard} />
+                    <ProtectedRoute exact path="/edit-profile" component={EditMenu} />
+                    <Route path="*">
+                      <Redirect to="/" />
+                    </Route>
+                  </Switch>
+                </LocalizationProvider>
+              </BookingProvider>
             </SocketProvider>
           </AuthProvider>
         </SnackBarProvider>
