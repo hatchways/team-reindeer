@@ -39,19 +39,21 @@ const profileSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  availability: {
-    type: Array,
-    enum: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thrusday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ],
-    default: [],
-  },
+  availability: [
+    {
+      type: String,
+      enum: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thrusday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      default: [],
+    },
+  ],
   photo: {
     type: String,
     default: "",
