@@ -34,8 +34,8 @@ io.on('connection', (socket) => {
 if (process.env.NODE_ENV === 'development') {
   app.use(logger('dev'));
 }
-app.use(json());
-app.use(urlencoded({ extended: false }));
+app.use(json({ limit: '50mb' }));
+app.use(urlencoded({ limit: '50mb', parameterLimit: 100000, extended: true }));
 app.use(cookieParser());
 app.use(express.static(join(__dirname, 'public')));
 
