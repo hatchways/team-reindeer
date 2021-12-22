@@ -3,9 +3,11 @@ import { Avatar, Box, Typography, Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import useStyles from './useStyles';
+import { useSnackBar } from '../../../context/useSnackbarContext';
 
 const UploadPhoto: React.FC = (): JSX.Element => {
   const classes = useStyles();
+  const { updateSnackBarMessage } = useSnackBar();
 
   const [selectedImage, setSelectedImage] = useState<File | undefined>();
 
@@ -29,6 +31,7 @@ const UploadPhoto: React.FC = (): JSX.Element => {
         });
       } catch (error) {
         console.log(error);
+        updateSnackBarMessage('An unexpected error occurred. Please try again');
       }
     }
   };
