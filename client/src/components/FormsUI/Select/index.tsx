@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { TextField, MenuItem } from '@material-ui/core';
 import { useField, useFormikContext } from 'formik';
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const SelectWrapper = ({ name, options, ...otherProps }: any): JSX.Element => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);

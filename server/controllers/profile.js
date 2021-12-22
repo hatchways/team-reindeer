@@ -37,7 +37,7 @@ exports.loadProfile = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: {
-      profile: profile,
+      profile,
     },
   });
 });

@@ -70,7 +70,7 @@ const EditMenu = (): JSX.Element => {
       address: string;
       phoneNumber: string;
       dateOfBirth: string;
-      availability: string;
+      availability: string[];
       photo: string;
     },
     {
@@ -84,7 +84,7 @@ const EditMenu = (): JSX.Element => {
       address: string;
       phoneNumber: string;
       dateOfBirth: string;
-      availability: string;
+      availability: string[];
       photo: string;
     }>,
   ) => {
@@ -128,7 +128,6 @@ const EditMenu = (): JSX.Element => {
         >
           <Tab label="Edit Profile" {...a11yProps(0)} />
           <Tab label="Profile Photo" {...a11yProps(1)} />
-          <Tab label="Availability" {...a11yProps(2)} />
           <Tab label="Payment" {...a11yProps(3)} />
           <Tab label="Security" {...a11yProps(4)} />
           <Tab label="Settings" {...a11yProps(5)} />
@@ -140,9 +139,6 @@ const EditMenu = (): JSX.Element => {
         </TabPanel>
         <TabPanel value={value} index={1}>
           <UploadPhoto />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          Availability Placeholder
         </TabPanel>
         <TabPanel value={value} index={3}>
           Payment Placeholder
