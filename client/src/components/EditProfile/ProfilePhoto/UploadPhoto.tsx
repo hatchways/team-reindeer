@@ -11,9 +11,8 @@ const UploadPhoto: React.FC = (): JSX.Element => {
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const fileList = e.target.files;
-    if (fileList && fileList.length > 0) {
-      setSelectedImage(fileList[0]);
-    }
+    if (!fileList) return;
+    setSelectedImage(fileList[0]);
   };
 
   const uploadImage = async () => {
