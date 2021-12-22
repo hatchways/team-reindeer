@@ -4,6 +4,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 import useStyles from './useStyles';
 import { useSnackBar } from '../../../context/useSnackbarContext';
+import upload from '../../../helpers/APICalls/upload';
 
 const UploadPhoto: React.FC = (): JSX.Element => {
   const classes = useStyles();
@@ -23,16 +24,15 @@ const UploadPhoto: React.FC = (): JSX.Element => {
       formData.append('files', selectedImage);
       formData.append('upload_preset', 'team-reindeer');
 
-      try {
-        await fetch('/upload-images', {
-          method: 'POST',
-          body: formData,
-          credentials: 'include',
-        });
-      } catch (error) {
-        console.log(error);
-        updateSnackBarMessage('An unexpected error occurred. Please try again');
-      }
+      upload().then((data) => {
+        if (data.error) {
+          updateSnackBarMessage(data.error.message);
+        } else {
+          console.error({ data });
+
+          updateSnackBarMessage('An unexpected error occurred. Please try again');
+        }
+      });
     }
   };
 
