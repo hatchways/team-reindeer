@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Avatar, Box, Typography, Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -32,6 +32,10 @@ const UploadPhoto: React.FC = (): JSX.Element => {
       }
     }
   };
+
+  useEffect(() => {
+    uploadImage();
+  });
 
   const avatarSrc = selectedImage && URL.createObjectURL(selectedImage);
 
