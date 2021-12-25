@@ -24,7 +24,7 @@ const UploadPhoto: React.FC = (): JSX.Element => {
       formData.append('files', selectedImage);
       formData.append('upload_preset', 'team-reindeer');
 
-      upload().then((data) => {
+      upload(formData).then((data) => {
         if (data.error) {
           updateSnackBarMessage(data.error.message);
         } else {
