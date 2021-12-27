@@ -1,19 +1,46 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { Avatar, Box, Typography, Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import useStyles from './useStyles';
+import { useSnackBar } from '../../../context/useSnackbarContext';
+import upload from '../../../helpers/APICalls/upload';
 
 const UploadPhoto: React.FC = (): JSX.Element => {
   const classes = useStyles();
+  const { updateSnackBarMessage } = useSnackBar();
 
-  const [selectedImage, setSelectedImage] = useState<File>();
+  const [selectedImage, setSelectedImage] = useState<File | undefined>();
 
-  const imageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setSelectedImage(e.target.files[0]);
-    }
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const fileList = e.target.files;
+    if (!fileList) return;
+    setSelectedImage(fileList[0]);
   };
+
+  const uploadImage = useCallback(async () => {
+    if (selectedImage) {
+      const formData = new FormData();
+      formData.append('files', selectedImage);
+      formData.append('upload_preset', 'team-reindeer');
+
+      upload(formData).then((data) => {
+        if (data.error) {
+          updateSnackBarMessage(data.error.message);
+        } else {
+          console.error({ data });
+
+          updateSnackBarMessage('An unexpected error occurred. Please try again');
+        }
+      });
+    }
+  }, [selectedImage, updateSnackBarMessage]);
+
+  useEffect(() => {
+    if (selectedImage) {
+      uploadImage();
+    }
+  }, [selectedImage, uploadImage]);
 
   const avatarSrc = selectedImage && URL.createObjectURL(selectedImage);
 
@@ -28,7 +55,7 @@ const UploadPhoto: React.FC = (): JSX.Element => {
         id="button"
         multiple
         type="file"
-        onChange={imageChange}
+        onChange={handleImageChange}
         required
       />
       <Avatar src={avatarSrc} alt="Profile photo" className={classes.avatar} />
@@ -36,7 +63,14 @@ const UploadPhoto: React.FC = (): JSX.Element => {
         Be sure to use a photo that clearly shows your face
       </Typography>
       <label htmlFor="button">
-        <Button variant="outlined" size="large" color="primary" component="span" className={classes.button}>
+        <Button
+          variant="outlined"
+          size="large"
+          color="primary"
+          component="span"
+          className={classes.button}
+          onClick={uploadImage}
+        >
           Upload a file from your device
         </Button>
       </label>
