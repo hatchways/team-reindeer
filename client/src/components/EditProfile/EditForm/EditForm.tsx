@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Formik, Form, FormikHelpers } from 'formik';
+import { Formik, Form, FormikHelpers, Field } from 'formik';
 import * as Yup from 'yup';
 import { Box, FormControlLabel, Grid, Typography } from '@material-ui/core';
 import { TextFieldWrapper as Textfield } from '../../FormsUI/Textfield';
@@ -121,11 +121,10 @@ const EditForm = ({ handleSubmit }: Props): JSX.Element => {
                     {daysOptions.map((day, i) => (
                       <div key={i}>
                         {isAvailable ? (
-                          <FormControlLabel
-                            name="availability"
-                            control={<Checkbox color="error" defaultChecked />}
-                            label={day}
-                          />
+                          <>
+                            <Field type="checkbox" name="availability" label={day} value={day} as={Checkbox} />
+                            <label>{day}</label>
+                          </>
                         ) : (
                           <FormControlLabel name="availability" control={<Checkbox disabled />} label={day} />
                         )}

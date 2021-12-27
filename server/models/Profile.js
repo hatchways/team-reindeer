@@ -42,15 +42,6 @@ const profileSchema = new mongoose.Schema({
   availability: [
     {
       type: String,
-      enum: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thrusday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
       default: [],
     },
   ],
