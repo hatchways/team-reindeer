@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { Avatar, Box, Typography, Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -18,7 +18,7 @@ const UploadPhoto: React.FC = (): JSX.Element => {
     setSelectedImage(fileList[0]);
   };
 
-  const uploadImage = async () => {
+  const uploadImage = useCallback(async () => {
     if (selectedImage) {
       const formData = new FormData();
       formData.append('files', selectedImage);
@@ -34,11 +34,13 @@ const UploadPhoto: React.FC = (): JSX.Element => {
         }
       });
     }
-  };
+  }, [selectedImage, updateSnackBarMessage]);
 
   useEffect(() => {
-    uploadImage();
-  });
+    if (selectedImage) {
+      uploadImage();
+    }
+  }, [selectedImage, uploadImage]);
 
   const avatarSrc = selectedImage && URL.createObjectURL(selectedImage);
 
