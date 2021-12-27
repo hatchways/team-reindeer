@@ -5,6 +5,7 @@ import useStyles from './useStyles';
 import SearchBar from '../../components/Dashboard/SearchBar/SearchBar';
 import Listing from '../../components/Dashboard/Listing/Listing';
 import { useProfile } from '../../context/useProfileContext';
+import { Profile } from '../../interface/Profile';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
@@ -15,8 +16,8 @@ export default function Dashboard(): JSX.Element {
       <Typography variant="h4">Your Search Results</Typography>
       <SearchBar />
       <Grid className={classes.listing}>
-        {sitters &&
-          sitters.map((sitter) => (
+        {sitters && sitters.length > 0 ? (
+          sitters.map((sitter: Profile) => (
             <Listing
               key={sitter._id}
               firstName={sitter.firstName}
@@ -26,11 +27,16 @@ export default function Dashboard(): JSX.Element {
               address={sitter.address}
               price={sitter.price}
             />
-          ))}
+          ))
+        ) : (
+          <Typography variant="h4">No Sitters Found</Typography>
+        )}
       </Grid>
-      <Button size="large" variant="outlined">
-        Show More
-      </Button>
+      {sitters && sitters.length > 0 && (
+        <Button size="large" variant="outlined">
+          Show More
+        </Button>
+      )}
     </Grid>
   );
 }

@@ -32,7 +32,7 @@ export const ProfileProvider: FunctionComponent = ({ children }): JSX.Element =>
     };
     checkFetchSitters();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setSitters]);
+  }, []);
 
   return <ProfileContext.Provider value={{ sitters }}>{children}</ProfileContext.Provider>;
 };
