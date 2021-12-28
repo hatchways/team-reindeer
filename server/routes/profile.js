@@ -12,8 +12,8 @@ router.route("/edit").post(protect, editProfile);
 
 router.route("/load").get(protect, loadProfile);
 
-router.route("/listing").get(protect, loadSitters);
+router.route("/listing").get(loadSitters);
 
-router.route("/listing/search").get(protect, loadSittersBySearch);
+router.route("/listing/search").get(loadSittersBySearch);
 
 module.exports = router;

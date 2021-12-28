@@ -24,9 +24,6 @@ export const BookingProvider: FunctionComponent = ({ children }): JSX.Element =>
           if (data.success) {
             setBookings(data.success);
           }
-          if (data.error) {
-            updateSnackBarMessage('Unable to connect to server. Please try again');
-          }
         })
         .catch((e) => {
           updateSnackBarMessage(e.message);
