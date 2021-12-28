@@ -19,31 +19,20 @@ const Listing = ({ firstName, lastName, description, photo, price, address }: Pr
           {firstName} {lastName}
         </Typography>
         <Rating name="read-only" value={4} readOnly />
-        {description ? (
-          <Typography variant="subtitle2">{description}</Typography>
-        ) : (
-          <Typography variant="h6">...</Typography>
-        )}
+        <Typography variant="subtitle2">{description}</Typography>
       </CardContent>
       <Divider />
       <CardContent className={classes.profileInfo2}>
-        {address ? (
-          <Box display="flex" alignItems="center">
-            <LocationOnIcon htmlColor="#f14140" />
-            <Typography variant="body2" color="text.secondary">
-              {address}
-            </Typography>
-          </Box>
-        ) : (
-          <Typography variant="h6">...</Typography>
-        )}
-        {price ? (
-          <Typography variant="body2" fontWeight={700}>
-            {`$${price}/hr`}
+        <Box display="flex" alignItems="center">
+          <LocationOnIcon htmlColor="#f14140" />
+          <Typography variant="body2" color="text.secondary">
+            {address}
           </Typography>
-        ) : (
-          <Typography variant="h6">...</Typography>
-        )}
+        </Box>
+
+        <Typography variant="body2" fontWeight={700}>
+          {`$${price}/hr`}
+        </Typography>
       </CardContent>
     </Card>
   );
