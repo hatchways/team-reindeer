@@ -5,15 +5,33 @@ import InputAdornment from '@mui/material/InputAdornment';
 import DatePicker from '@mui/lab/DatePicker';
 import useStyles from './useStyles';
 import SearchIcon from '@mui/icons-material/Search';
+import { useProfile } from '../../../context/useProfileContext';
+import Button from '@material-ui/core/Button';
 
 const SearchBar = (): JSX.Element => {
-  const [value, setValue] = useState<Date | null>(null);
+  const [search, setSearch] = useState<string | null>(null);
+  const [start, setStart] = useState<Date | null>(null);
+  const [end, setEnd] = useState<Date | null>(null);
+
   const classes = useStyles();
+  const { searchSitters } = useProfile();
+
+  const searchSitter = () => {
+    searchSitters(search);
+  };
+
+  const handleSearch = () => {
+    searchSitter();
+  };
+
   return (
     <Grid spacing={2} mt={2} className={classes.root}>
       <Grid className={classes.location}>
         <TextField
+          name="search"
           id="location"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
           label="Search By City"
           fullWidth
           variant="outlined"
@@ -29,9 +47,10 @@ const SearchBar = (): JSX.Element => {
       <Grid className={classes.date}>
         <DatePicker
           label="Start"
-          value={value}
+          value={start}
+          minDate={new Date()}
           onChange={(newValue) => {
-            setValue(newValue);
+            setStart(newValue);
           }}
           renderInput={(params) => <TextField variant="outlined" {...params} />}
         />
@@ -39,12 +58,18 @@ const SearchBar = (): JSX.Element => {
       <Grid className={classes.date}>
         <DatePicker
           label="End"
-          value={value}
+          value={end}
+          minDate={start}
           onChange={(newValue) => {
-            setValue(newValue);
+            setEnd(newValue);
           }}
           renderInput={(params) => <TextField variant="outlined" {...params} />}
         />
+      </Grid>
+      <Grid className={classes.searchButton}>
+        <Button color="primary" size="small" onClick={handleSearch} variant="contained">
+          Search
+        </Button>
       </Grid>
     </Grid>
   );

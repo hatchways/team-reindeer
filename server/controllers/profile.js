@@ -51,3 +51,29 @@ exports.loadSitters = asyncHandler(async (req, res, next) => {
     success: profiles,
   });
 });
+
+// @route GET /profile/listing/search
+// @desc Get sitter profile data
+// @access Private
+exports.loadSittersBySearch = asyncHandler(async (req, res, next) => {
+  const { searchQuery } = req.query;
+
+  try {
+    const address = new RegExp(searchQuery, "i");
+    if (!address) {
+      const profiles = await Profile.find({ sitter: true });
+      res.status(200).json({
+        success: profiles,
+      });
+    } else {
+      const profiles = await Profile.find({ address: address, sitter: true });
+      res.status(200).json({
+        success: profiles,
+      });
+    }
+  } catch (error) {
+    res.status(404).json({
+      message: error.message,
+    });
+  }
+});

@@ -1,14 +1,16 @@
 import { useContext, createContext, FunctionComponent, useState, useEffect } from 'react';
 import { ProfileApiData } from '../interface/Profile';
-import { fetchSitters } from '../helpers/APICalls/profile';
+import { fetchSitters, fetchSittersBySearch } from '../helpers/APICalls/profile';
 import { useSnackBar } from './useSnackbarContext';
 
 interface ProfileContext {
   sitters: ProfileApiData['success'];
+  searchSitters: (searchByCity: string | null) => void;
 }
 
 export const ProfileContext = createContext<ProfileContext>({
   sitters: [],
+  searchSitters: () => null,
 });
 
 export const ProfileProvider: FunctionComponent = ({ children }): JSX.Element => {
@@ -34,7 +36,22 @@ export const ProfileProvider: FunctionComponent = ({ children }): JSX.Element =>
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <ProfileContext.Provider value={{ sitters }}>{children}</ProfileContext.Provider>;
+  const searchSitters = async (searchQuery: string | null) => {
+    await fetchSittersBySearch(searchQuery)
+      .then((data) => {
+        if (data.success) {
+          setSitters(data.success);
+        }
+        if (data.error) {
+          updateSnackBarMessage('Unable to connect to server. Please try again');
+        }
+      })
+      .catch((e) => {
+        updateSnackBarMessage(e.message);
+      });
+  };
+
+  return <ProfileContext.Provider value={{ sitters, searchSitters }}>{children}</ProfileContext.Provider>;
 };
 
 export function useProfile(): ProfileContext {
