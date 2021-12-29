@@ -7,10 +7,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   location: {
-    width: '60%',
+    width: '50%',
   },
   date: {
-    width: '30%',
+    width: '40%',
+    display: 'flex',
   },
   searchButton: {
     width: '10%',

@@ -4,17 +4,16 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Stack from '@mui/material/Stack';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
 import { useProfile } from '../../context/useProfileContext';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
+import SelectDate from '../SelectDate/SelectDate';
+import { DateProps } from '../../interface/DateProps';
 
 const FindDogSitter = (): JSX.Element => {
   const [search, setSearch] = useState<string | null>(null);
-  const [start, setStart] = useState<Date | null>(null);
-  const [end, setEnd] = useState<Date | null>(null);
+  const [date, setDate] = useState<DateProps>({ start: null, end: null });
+
   const classes = useStyles();
   const history = useHistory();
 
@@ -27,9 +26,13 @@ const FindDogSitter = (): JSX.Element => {
   const handleSearch = () => {
     searchSitter();
     history.push({
+      state: { address: search, date: date },
       pathname: '/dashboard',
-      state: { address: search, start: start, end: end },
     });
+  };
+
+  const handleChange = (data: DateProps) => {
+    setDate(data);
   };
 
   return (
@@ -46,28 +49,7 @@ const FindDogSitter = (): JSX.Element => {
       />
       <Typography className={classes.typography}>drop in/drop off</Typography>
       <Box display="flex" flexDirection="row">
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
-            label="Drop In"
-            value={start}
-            minDate={new Date()}
-            onChange={(newValue) => {
-              setStart(newValue);
-            }}
-            renderInput={(params) => <TextField variant="outlined" {...params} />}
-          />
-        </LocalizationProvider>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
-            label="Drop Off"
-            value={end}
-            minDate={start}
-            onChange={(newValue) => {
-              setEnd(newValue);
-            }}
-            renderInput={(params) => <TextField variant="outlined" {...params} />}
-          />
-        </LocalizationProvider>
+        <SelectDate selectedDates={date} handleDates={(e) => handleChange(e)} />
       </Box>
       <Button color="primary" size="large" onClick={handleSearch} className={classes.typography} variant="contained">
         find my dog sitter
