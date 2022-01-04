@@ -27,4 +27,20 @@ exports.createConversation = asyncHandler(async (req, res, next) => {
     path: "latestMessage.sender",
     select: "name  email",
   });
+
+  if (isConversation.length > 0) {
+    res.send(isConversation[0]);
+  } else {
+    let conversationData = {
+      conversationName: "sender",
+      isGroupConversation: false,
+      users: [req.user._id, userId],
+    };
+
+    const createdConversation = await Conversation.create(conversationData);
+    const fullConversation = await Chat.findOne({
+      _id: createdConversation._id,
+    }).populate("users", "-password");
+    res.status(200).json(fullConversation);
+  }
 });
