@@ -2,7 +2,7 @@ const Conversation = require("../models/Conversation");
 const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
 
-// @route POST /conversation
+// @route POST /conversation/create
 // @desc Create new conversation
 //@access Private
 exports.createConversation = asyncHandler(async (req, res, next) => {
