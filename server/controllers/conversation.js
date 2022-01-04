@@ -16,7 +16,7 @@ exports.createConversation = asyncHandler(async (req, res, next) => {
   let isConversation = await Conversation.find({
     isGroupConversation: false,
     $and: [
-      { users: { $elemMatch: { $eq: req.user._id } } },
+      { users: { $elemMatch: { $eq: req.user.id } } },
       { users: { $elemMatch: { $eq: userId } } },
     ],
   })
@@ -25,7 +25,7 @@ exports.createConversation = asyncHandler(async (req, res, next) => {
 
   isConversation = await User.populate(isConversation, {
     path: "latestMessage.sender",
-    select: "name  email",
+    select: "username  email",
   });
 
   if (isConversation.length > 0) {
@@ -34,11 +34,11 @@ exports.createConversation = asyncHandler(async (req, res, next) => {
     let conversationData = {
       conversationName: "sender",
       isGroupConversation: false,
-      users: [req.user._id, userId],
+      users: [req.user.id, userId],
     };
 
     const createdConversation = await Conversation.create(conversationData);
-    const fullConversation = await Chat.findOne({
+    const fullConversation = await Conversation.findOne({
       _id: createdConversation._id,
     }).populate("users", "-password");
     res.status(200).json(fullConversation);
