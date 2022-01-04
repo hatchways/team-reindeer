@@ -2,7 +2,7 @@ const Conversation = require("../models/Conversation");
 const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
 
-// @route POST /conversation/create
+// @route POST /conversations
 // @desc Create new conversation
 //@access Private
 exports.createConversation = asyncHandler(async (req, res, next) => {
@@ -41,6 +41,19 @@ exports.createConversation = asyncHandler(async (req, res, next) => {
     const fullConversation = await Conversation.findOne({
       _id: createdConversation._id,
     }).populate("users", "-password");
-    res.status(200).json(fullConversation);
+    res.status(200).json({ success: true, data: fullConversation });
   }
+});
+
+// @route GET /conversations
+// @desc Fetch all conversions of a user
+//@access Private
+exports.getAllConversations = asyncHandler(async (req, res) => {
+  let conversations = await Conversation.find({
+    users: { $elemMatch: { $eq: req.user.id } },
+  })
+    .populate("users", "-password")
+    .sort({ updatedAt: -1 });
+
+  res.status(200).json({ success: true, data: conversations });
 });
