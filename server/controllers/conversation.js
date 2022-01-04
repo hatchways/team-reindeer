@@ -41,7 +41,7 @@ exports.createConversation = asyncHandler(async (req, res, next) => {
     const fullConversation = await Conversation.findOne({
       _id: createdConversation._id,
     }).populate("users", "-password");
-    res.status(200).json({ success: true, data: fullConversation });
+    res.status(200).json({ success: true, fullConversation });
   }
 });
 
@@ -53,7 +53,9 @@ exports.getAllConversations = asyncHandler(async (req, res) => {
     users: { $elemMatch: { $eq: req.user.id } },
   })
     .populate("users", "-password")
+    .populate("latestMessage")
     .sort({ updatedAt: -1 });
-
-  res.status(200).json({ success: true, data: conversations });
+  res
+    .status(200)
+    .json({ success: true, conversations, count: conversations.length });
 });
