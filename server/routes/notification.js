@@ -7,10 +7,11 @@ const {
   getUnreadNotifications,
   markNotificationAsRead,
 } = require("../controllers/notification");
+const { validateNotification } = require("../validate");
 
 router
   .route("/")
-  .post(protect, createNotification)
+  .post(protect, validateNotification, createNotification)
   .get(protect, getAllNotifications);
 router.route("/unread").get(protect, getUnreadNotifications);
 router.route("/read/:notificationId").patch(protect, markNotificationAsRead);
