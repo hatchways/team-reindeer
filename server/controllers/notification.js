@@ -17,9 +17,9 @@ exports.createNotification = asyncHandler(async (req, res, next) => {
   res.status(201).json({ success: true, data: notification });
 });
 
-//@desc Fetch all notifications
-//@route GET /notifications
-//@ access Private
+// @desc Fetch all notifications
+// @route GET /notifications
+// @access Private
 exports.getAllNotifications = asyncHandler(async (req, res, next) => {
   const notifications = await Notification.find({ userId: req.user.id });
   res
