@@ -43,7 +43,7 @@ exports.getUnreadNotifications = asyncHandler(async (req, res, next) => {
 // @route PATCH /notifications/read/:notificationId
 // @access Private
 exports.markNotificationAsRead = asyncHandler(async (req, res, next) => {
-  const notification = await Profile.findById(req.params.notificationId);
+  const notification = await Notification.findById(req.params.notificationId);
 
   if (!notification) {
     res.status(404);
