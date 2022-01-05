@@ -12,7 +12,6 @@ exports.validateRegister = [
   (req, res, next) => {
     const errors = validationResult(req);
 
-    console.log(errors);
     if (!errors.isEmpty())
       return res.status(400).json({ errors: errors.array() });
     next();
@@ -36,8 +35,6 @@ exports.validateNotification = [
   check("description", "Please enter a description").isEmail(),
   (req, res, next) => {
     const errors = validationResult(req);
-
-    console.log(errors);
     if (!errors.isEmpty())
       return res.status(400).json({ errors: errors.array() });
     next();
