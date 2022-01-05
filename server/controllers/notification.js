@@ -26,3 +26,13 @@ exports.getAllNotifications = asyncHandler(async (req, res, next) => {
     .status(200)
     .json({ success: true, data: notifications, count: notifications.length });
 });
+
+// @desc Fetch all unread notifications
+// @route GET /notifications/unread
+// @access Private
+exports.getUnreadNotifications = asyncHandler(async (req, res, next) => {
+  const notifications = await Notification.find({ read: { $eq: false } });
+  res
+    .status(200)
+    .json({ success: true, data: notifications, count: notifications.length });
+});
