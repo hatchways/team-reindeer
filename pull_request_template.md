@@ -1,6 +1,6 @@
 ### What this PR does (required):
 
--- list PR functionality here
+- list PR functionality here
 
 ### Screenshots / Videos (front-end only):
 
