@@ -5,6 +5,7 @@ const {
   createNotification,
   getAllNotifications,
   getUnreadNotifications,
+  markNotificationAsRead,
 } = require("../controllers/notification");
 
 router
@@ -12,5 +13,6 @@ router
   .post(protect, createNotification)
   .get(protect, getAllNotifications);
 router.route("/unread").get(protect, getUnreadNotifications);
+router.route("/read/:notificationId").patch(protect, markNotificationAsRead);
 
 module.exports = router;
