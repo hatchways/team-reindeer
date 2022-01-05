@@ -50,16 +50,9 @@ exports.markNotificationAsRead = asyncHandler(async (req, res, next) => {
     throw new Error(`No notification with id ${req.params.notificationId}`);
   }
 
-  const unreadNotifications = await Notification.find({ read: { $eq: false } });
-
-  if (!unreadNotifications) {
-    res.status(400);
-    throw new Error("Bad request");
-  }
-
-  const markAsRead = await Notification.findByIdAndUpdate(
-    req.params.notificationId,
-    { read: req.body.read },
+  const markAsRead = await Notification.updateOne(
+    { _id: req.params.notificationId },
+    { $set: { read: true } },
     {
       new: true,
     }
