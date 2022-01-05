@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", uploadRouter);
-app.use("/notification", notificationRouter);
+app.use("/notifications", notificationRouter);
 app.use("/profile", profileRouter);
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
