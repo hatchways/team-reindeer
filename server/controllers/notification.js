@@ -31,7 +31,10 @@ exports.getAllNotifications = asyncHandler(async (req, res, next) => {
 // @route GET /notifications/unread
 // @access Private
 exports.getUnreadNotifications = asyncHandler(async (req, res, next) => {
-  const unreadNotifications = await Notification.find({ read: { $eq: false } });
+  const unreadNotifications = await Notification.find({
+    userId: req.user.id,
+    read: { $eq: false },
+  });
   res.status(200).json({
     success: true,
     data: unreadNotifications,
