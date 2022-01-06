@@ -53,6 +53,9 @@ exports.markNotificationAsRead = asyncHandler(async (req, res, next) => {
     throw new Error(`No notification with id ${req.params.notificationId}`);
   }
 
+  if (!mongoose.Types.ObjectId.isValid(req.params.notificationId))
+    return res.status(400).send("Bad request");
+
   const markAsRead = await Notification.updateOne(
     { _id: req.params.notificationId },
     { $set: { read: true } },
