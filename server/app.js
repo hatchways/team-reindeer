@@ -14,7 +14,10 @@ const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const profileRouter = require("./routes/profile");
 const uploadRouter = require("./routes/upload");
+const conversationRouter = require("./routes/conversation");
+const messageRouter = require("./routes/message");
 const requestRouter = require("./routes/request");
+
 
 const { json, urlencoded } = express;
 
@@ -35,8 +38,8 @@ io.on("connection", (socket) => {
 if (process.env.NODE_ENV === "development") {
   app.use(logger("dev"));
 }
-app.use(json({ limit: '50mb' }));
-app.use(urlencoded({ limit: '50mb', parameterLimit: 100000, extended: true }));
+app.use(json({ limit: "50mb" }));
+app.use(urlencoded({ limit: "50mb", parameterLimit: 100000, extended: true }));
 app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
 
@@ -49,6 +52,8 @@ app.use("/", uploadRouter);
 app.use("/profile", profileRouter);
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
+app.use("/conversations", conversationRouter);
+app.use("/messages", messageRouter);
 app.use("/request", requestRouter);
 
 if (process.env.NODE_ENV === "production") {
