@@ -16,6 +16,8 @@ const profileRouter = require("./routes/profile");
 const uploadRouter = require("./routes/upload");
 const conversationRouter = require("./routes/conversation");
 const messageRouter = require("./routes/message");
+const requestRouter = require("./routes/request");
+
 
 const { json, urlencoded } = express;
 
@@ -52,6 +54,7 @@ app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/conversations", conversationRouter);
 app.use("/messages", messageRouter);
+app.use("/request", requestRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
