@@ -36,7 +36,7 @@ exports.createConversation = asyncHandler(async (req, res, next) => {
   let conversationData = {
     conversationName: "sender",
     isGroupConversation: false,
-    users: [req.user.id, userId],
+    users: [req.user.id, receiverId],
   };
 
   const createdConversation = await Conversation.create(conversationData);
