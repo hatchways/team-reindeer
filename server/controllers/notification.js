@@ -5,12 +5,13 @@ const Notification = require("../models/Notification");
 //@route POST /notifications
 //@ access Private
 exports.createNotification = asyncHandler(async (req, res, next) => {
-  const { title, description, read } = req.body;
+  const { title, description, read, recieverId } = req.body;
 
   const notification = await new Notification({
     title,
     description,
     read,
+    recieverId,
     userId: req.user.id,
   }).save();
 
