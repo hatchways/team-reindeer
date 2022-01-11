@@ -1,22 +1,21 @@
 const mongoose = require("mongoose");
 
-const requestSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
+const Schema = mongoose.Schema;
+const timeSlot = new Schema({ start: Date, end: Date });
+
+const requestSchema = new Schema({
+  owner: {
+    type: Schema.Types.ObjectId,
     required: true,
     ref: "User",
   },
-  sitterId: {
-    type: mongoose.Schema.Types.ObjectId,
+  sitter: {
+    type: Schema.Types.ObjectId,
     required: true,
     ref: "User",
   },
-  start: {
-    type: Date,
-    required: true,
-  },
-  end: {
-    type: Date,
+  duration: {
+    type: timeSlot,
     required: true,
   },
   status: {
@@ -24,9 +23,17 @@ const requestSchema = new mongoose.Schema({
     enum: ["accepted", "declined", "pending"],
     default: "pending",
   },
+  completed: {
+    type: Boolean,
+    default: false,
+  },
   paid: {
     type: Boolean,
     default: false,
+  },
+  totalCost: {
+    type: Number,
+    default: 0,
   },
 });
 

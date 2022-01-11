@@ -10,11 +10,15 @@ const { join } = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
+
+const notificationRouter = require("./routes/notification");
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const profileRouter = require("./routes/profile");
 const uploadRouter = require("./routes/upload");
-const notificationRouter = require("./routes/notification");
+const conversationRouter = require("./routes/conversation");
+const messageRouter = require("./routes/message");
+const requestRouter = require("./routes/request");
 
 const { json, urlencoded } = express;
 
@@ -50,6 +54,9 @@ app.use("/notifications", notificationRouter);
 app.use("/profile", profileRouter);
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
+app.use("/conversations", conversationRouter);
+app.use("/messages", messageRouter);
+app.use("/request", requestRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));

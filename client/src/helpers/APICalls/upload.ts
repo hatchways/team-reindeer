@@ -6,8 +6,7 @@ interface FetchOptions {
   credentials: RequestCredentials;
 }
 
-const upload = async (): Promise<AuthApiData> => {
-  const formData = new FormData();
+const upload = async (formData: FormData): Promise<AuthApiData> => {
   const fetchOptions: FetchOptions = {
     method: 'POST',
     body: formData,
