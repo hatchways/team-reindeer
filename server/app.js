@@ -10,6 +10,8 @@ const { join } = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
+
+const notificationRouter = require("./routes/notification");
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const profileRouter = require("./routes/profile");
@@ -17,7 +19,6 @@ const uploadRouter = require("./routes/upload");
 const conversationRouter = require("./routes/conversation");
 const messageRouter = require("./routes/message");
 const requestRouter = require("./routes/request");
-
 
 const { json, urlencoded } = express;
 
@@ -49,6 +50,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", uploadRouter);
+app.use("/notifications", notificationRouter);
 app.use("/profile", profileRouter);
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
