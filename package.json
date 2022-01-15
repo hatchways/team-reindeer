@@ -10,6 +10,8 @@
   "dependencies": {
     "@mui/lab": "^5.0.0-alpha.55",
     "cloudinary": "^1.27.1",
+    "form-material-ui": "^4.2.5",
+    "formik-material-ui": "^4.0.0-alpha.2",
     "install": "^0.13.0",
     "npm": "^8.1.4"
   }

@@ -35,10 +35,16 @@ const profileSchema = new mongoose.Schema({
     type: Date,
     default: null,
   },
-  availability: {
-    type: [Date],
-    default: [],
+  available: {
+    type: Boolean,
+    default: false,
   },
+  availability: [
+    {
+      type: String,
+      default: [],
+    },
+  ],
   photo: {
     type: String,
     default: "",

@@ -1,12 +1,15 @@
-import { Formik, Form, FormikHelpers } from 'formik';
+import { useState } from 'react';
+import { Formik, Form, FormikHelpers, Field } from 'formik';
 import * as Yup from 'yup';
-import { Box, Grid, Typography } from '@material-ui/core';
-
+import { Box, FormControlLabel, Grid, Typography } from '@material-ui/core';
 import { TextFieldWrapper as Textfield } from '../../FormsUI/Textfield';
 import { SelectWrapper as Select } from '../../FormsUI/Select';
 import { DateTimePicker } from '../../FormsUI/DateTimePicker';
 import { ButtonWrapper as Button } from '../../FormsUI/Button';
+import Checkbox from '@mui/material/Checkbox';
+import Switch from '@mui/material/Switch';
 import useStyles from './useStyles';
+import FormGroup from '@material-ui/core/FormGroup';
 
 interface Props {
   handleSubmit: (
@@ -30,7 +33,7 @@ interface Props {
       address: string;
       phoneNumber: string;
       dateOfBirth: string;
-      availability: string;
+      availability: string[];
       photo: string;
     },
     {
@@ -44,7 +47,7 @@ interface Props {
       address: string;
       phoneNumber: string;
       dateOfBirth: string;
-      availability: string;
+      availability: string[];
       photo: string;
     }>,
   ) => void;
@@ -59,7 +62,7 @@ const initialFormState = {
   address: '',
   phoneNumber: '',
   dateOfBirth: '',
-  availability: '',
+  availability: ['Monday'],
   photo: '',
 };
 
@@ -80,6 +83,14 @@ const formValidation = Yup.object().shape({
 const EditForm = ({ handleSubmit }: Props): JSX.Element => {
   const classes = useStyles();
   const options = ['Male', 'Female', 'Other'];
+  const [isAvailable, setIsAvailable] = useState(false);
+
+  const daysOptions = ['Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday', 'Sunday'];
+
+  const handleSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsAvailable(event.target.checked);
+  };
+
   return (
     <Box>
       <Formik initialValues={initialFormState} validationSchema={formValidation} onSubmit={handleSubmit}>
@@ -87,9 +98,40 @@ const EditForm = ({ handleSubmit }: Props): JSX.Element => {
           <Form onSubmit={handleSubmit}>
             <Grid container alignItems="center" spacing={2}>
               <Grid item xs={12}>
-                <Typography variant="h6" align="center">
+                <Typography variant="h5" align="center">
                   Edit Profile
                 </Typography>
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <Typography variant="body1" color="textPrimary" className={classes.typography}>
+                  {isAvailable ? `I 'm available` : `I 'm not available`}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <Switch color="error" onChange={handleSwitch} />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <Typography variant="body1" color="textPrimary" className={classes.typography}>
+                  Availability
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <FormGroup>
+                  <Box display="flex" flexWrap="wrap">
+                    {daysOptions.map((day, i) => (
+                      <div key={i}>
+                        {isAvailable ? (
+                          <>
+                            <Field type="checkbox" name="availability" label={day} value={day} as={Checkbox} />
+                            <label>{day}</label>
+                          </>
+                        ) : (
+                          <FormControlLabel name="availability" control={<Checkbox disabled />} label={day} />
+                        )}
+                      </div>
+                    ))}
+                  </Box>
+                </FormGroup>
               </Grid>
               <Grid item xs={12} sm={3}>
                 <Typography variant="body1" color="textPrimary" className={classes.typography}>

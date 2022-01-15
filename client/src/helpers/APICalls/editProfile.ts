@@ -10,7 +10,7 @@ const editProfile = async (
   address: string,
   phoneNumber: string,
   dateOfBirth: string,
-  availability: string,
+  availability: string[],
   photo: string,
 ): Promise<AuthApiData> => {
   const fetchOptions: FetchOptions = {
