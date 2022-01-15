@@ -4,13 +4,18 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: theme.spacing(70),
     display: 'flex',
-    alignItems: 'stretch',
+    alignItems: 'center',
   },
   location: {
-    width: '70%',
+    width: '50%',
   },
   date: {
-    width: '30%',
+    width: '40%',
+    display: 'flex',
+  },
+  searchButton: {
+    width: '10%',
+    marginLeft: theme.spacing(2.5),
   },
 }));
 

@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   profileInfo2: {
     display: 'flex',
     alignItems: 'center',
+    textTransform: 'capitalize',
     justifyContent: 'space-between',
   },
 }));
